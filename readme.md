@@ -16,3 +16,5 @@
 
 ### CALENDAR
 -----
+
+1. List event in the calendar based on the how much event they have
