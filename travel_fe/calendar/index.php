@@ -26,7 +26,7 @@ if($result_query->num_rows > 0){
 			if(!array_key_exists($i, $arr_of_ev_remember)){
 				$arr_of_ev_remember[$i] = 1;
 			}else{
-				$arr_of_ev_remember[$i]++;
+				$arr_of_ev_remember[$i]+= 1;
 			}
 		}
 		
@@ -118,7 +118,14 @@ if($result_query->num_rows > 0){
 									<?php if(
 										$data_is_valid_date
 									){
-										echo $date_actual;
+										$text_temp = "<h3>".$date_actual."</h3><br>";
+										if($is_exists){
+											$text_temp .= $arr_of_ev_remember["$date_actual"];
+										}else{
+											$text_temp .= "0";
+										}
+										$text_temp .= " กิจกรรม";
+										echo $text_temp;
 									}
 									?>
 								</td>
