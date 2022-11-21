@@ -34,6 +34,7 @@ if($result_query->num_rows > 0){
 }
 
 ?>
+<link rel="stylesheet" href="./calendar/calendar_helper.css">
 <script src="./calendar/calendar_helper.js" defer="true">
 	
 </script>
@@ -101,7 +102,7 @@ if($result_query->num_rows > 0){
 									}else if($is_exists){
 										$class_temp.="w3-aqua ";
 									}else if($is_today){
-										$class_temp.="w3-green w3-text-red ";
+										$class_temp.="w3-green selectioned ";
 									}
 									if($data_is_valid_date){
 										$class_temp.="date-valid ";

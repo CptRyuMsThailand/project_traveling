@@ -34,7 +34,7 @@ async function calendar_get_data(str,isSelect=true){
 	$MONTH_ENUM_THAI[Number(date_str_obj[1])-1] + " พ.ศ." + 
 	(Number(date_str_obj[0]) + 543);
 	let obj_json_arr = await get_eventInDate(str);
-	console.log(obj_json_arr);
+	//console.log(obj_json_arr);
 	dom_calendar_card_container.innerHTML = "";
 	let elem_text = "";
 	for(let i of obj_json_arr){
@@ -60,12 +60,12 @@ async function calendar_get_data(str,isSelect=true){
 function calendar_reset_selector(){
 	let dom_valid_class_date = document.getElementsByClassName("date-valid");
 	for(let i of dom_valid_class_date){
-		i.classList.remove("w3-text-red");
+		i.classList.remove("selectioned");
 	}
 }
 function calendar_set_selector(date_num){
 	let dom_selected_date = document.getElementsByClassName("date-valid")[date_num];
-	dom_selected_date.classList.add("w3-text-red");
+	dom_selected_date.classList.add("selectioned");
 }
 const $MONTH_ENUM_THAI = [
 	"มกราคม",
