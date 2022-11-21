@@ -113,7 +113,10 @@ if($result_query->num_rows > 0){
 									?>
 									
 									<?php 
-									echo "onclick=\"calendar_get_data('$date_value_str-$date_actual')\"";
+									if($data_is_valid_date){
+										echo "onclick=\"calendar_get_data('$date_value_str-$date_actual')\"";	
+									}
+									
 									?>
 									>
 									<?php if(

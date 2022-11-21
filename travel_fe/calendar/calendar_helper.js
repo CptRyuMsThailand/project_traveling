@@ -31,7 +31,7 @@ async function get_eventInDate(ymd_string){
 async function calendar_get_data(str,isSelect=true){
 	let date_str_obj = str.split("-");
 	dom_calendar_dateHeader.innerText = date_str_obj[2] + " " + 
-	$MONTH_ENUM_THAI[Number(date_str_obj[1])-1] + " พ.ศ." + 
+	$MONTH_ENUM_THAI[Number(date_str_obj[1])-1] + " พ.ศ. " + 
 	(Number(date_str_obj[0]) + 543);
 	let obj_json_arr = await get_eventInDate(str);
 	//console.log(obj_json_arr);
