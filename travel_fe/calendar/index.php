@@ -1,0 +1,153 @@
+<?php
+if(!isset($FROM_INDEX)){
+	header("Location:./../index.php");
+}
+$date_value_str;
+$date_now_str = date("Y-m-d");
+$date_now = explode("-",$date_now_str);
+if(!isset($_GET["date"])){ // IF date is not included
+	$date_value_str = date("Y-m");
+}else{
+	$date_value_str = htmlentities($_GET["date"]);
+}
+$date_value = explode("-",$date_value_str);
+
+$start_wdate = zeller_congruence(1,0+$date_value[1]-1,0+$date_value[0]);
+$date_length = month_length(0+$date_value[1]-1,0+$date_value[0]);
+
+// Get all available event in month
+$arr_of_ev_remember = [];
+$result_query = $conn->query("SELECT ev_date_beg,ev_date_end FROM table_event WHERE ev_date_beg >= '".$date_value_str."-01' AND ev_date_end <= '".$date_value_str."-31'");
+if($result_query->num_rows > 0){
+	while($row = $result_query->fetch_assoc()){
+		$date_beg = explode("-",$row["ev_date_beg"])[2];
+		$date_end = explode("-",$row["ev_date_end"])[2];
+		for($i = $date_beg; $i <= $date_end; $i++){
+			if(!array_key_exists($i, $arr_of_ev_remember)){
+				$arr_of_ev_remember[$i] = 1;
+			}else{
+				$arr_of_ev_remember[$i]++;
+			}
+		}
+		
+	}
+}
+
+?>
+<script src="./calendar/calendar_helper.js" defer="true">
+	
+</script>
+<div class="w3-container s12" >
+	<div class="w3-row" >
+		<div class="w3-col m12 l7">
+
+
+
+			<div class="w3-row">
+				<div class="w3-col w3-cyan">
+					<h2 class="w3-center">
+						<a href="?pageName=<?php echo $TAB_CALENDAR;?>&date=<?php echo implode("-",prev_month($date_value[0],$date_value[1]));?>"><button class="w3-button">&lt;</button></a>
+						<?php 
+						echo $MONTH_ENUM_THAI[$date_value[1]-1]." พ.ศ. ".($date_value[0] + 543);
+						?>
+						<a href="?pageName=<?php echo $TAB_CALENDAR;?>&date=<?php echo implode("-",next_month($date_value[0],$date_value[1]));?>"><button class="w3-button">&gt;</button></a>
+					</h2>
+				</div>
+
+				<!-- This is side info -->
+			</div>
+			<div class="w3-row">
+				<div class="w3-col">
+					<table class="w3-table w3-striped w3-border">
+						<tr>
+							<?php
+							for($i=0;$i<7;$i++){
+								?>
+								<th>
+									<?php echo $SDATE_ENUM_THAI[$i];?>
+
+								</th>
+								<?php
+							}
+							?>
+						</tr>
+						<?php
+						$temp_date = 1;
+						for($j=0;$j<7;$j++)
+						{
+							if($temp_date >= ($start_wdate + $date_length + 1)){
+								break;
+							}
+							?>
+							<tr>
+								<?php
+								for($i=0;$i<7;$i++)
+								{
+									$date_actual = $temp_date - $start_wdate;
+
+									$data_is_valid_date = $temp_date > ($start_wdate) && $temp_date < ($start_wdate + $date_length + 1);
+									
+
+									?>
+									<td 
+									style="cursor: pointer;"
+									<?php
+									$class_temp = "class='";
+									$is_exists = array_key_exists($date_actual,$arr_of_ev_remember);
+									$is_today  = ($date_value_str."-".$date_actual) == $date_now_str;
+
+									if($is_exists && $is_today){
+										$class_temp.="w3-black ";
+									}else if($is_exists){
+										$class_temp.="w3-aqua ";
+									}else if($is_today){
+										$class_temp.="w3-green w3-text-red ";
+									}
+									if($data_is_valid_date){
+										$class_temp.="date-valid ";
+									}
+									$class_temp .= "'";
+
+									echo $class_temp;
+									?>
+									
+									<?php 
+									echo "onclick=\"calendar_get_data('$date_value_str-$date_actual')\"";
+									?>
+									>
+									<?php if(
+										$data_is_valid_date
+									){
+										echo $date_actual;
+									}
+									?>
+								</td>
+
+								<?php
+								$temp_date++;
+							}
+							?>
+						</tr>
+						<?php
+					}
+					?>
+
+				</table>
+			</div>
+		</div>
+	</div>
+	<!-- Greeny bar -->
+	<div class="w3-col m12 l5 w3-green" style="height:500px;">
+		<div class="w3-container w3-border">
+			<h2 id="dom_calendar_dateHeader"> Date  </h2>
+		</div>
+		<div class="w3-display-container" id="dom_calendar_card_container">
+
+		</div>
+	</div>
+</div>
+</div>
+
+
+
+
