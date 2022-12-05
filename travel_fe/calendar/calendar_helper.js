@@ -30,7 +30,7 @@ async function get_eventInDate(ymd_string){
 }
 async function calendar_get_data(str,isSelect=true){
 	let date_str_obj = str.split("-");
-	dom_calendar_dateHeader.innerText = date_str_obj[2] + " " + 
+	dom_calendar_dateHeader.innerText = Number(date_str_obj[2]) + " " + 
 	$MONTH_ENUM_THAI[Number(date_str_obj[1])-1] + " พ.ศ. " + 
 	(Number(date_str_obj[0]) + 543);
 	let obj_json_arr = await get_eventInDate(str);
@@ -38,13 +38,15 @@ async function calendar_get_data(str,isSelect=true){
 	dom_calendar_card_container.innerHTML = "";
 	let elem_text = "";
 	for(let i of obj_json_arr){
-
+		let listOfImage = i.ev_img_list.split(",");
+		console.log(listOfImage);
 		elem_text += `
-			<div class="w3-card-4">
+			<div class="w3-content">
 				<div class="w3-display-container w3-text-white">
-					<img class="w3-hover-opacity" style="width:100%" src="./images/${i.ev_img_list}">
-					<div class="w3-medium w3-display-bottomleft w3-padding">${i.ev_name}</div>
+					${createSlideshow("calendar_slideshow",listOfImage)}
+					<a href="?pageName=3&articleid=${i.ev_id}"><div class="w3-medium w3-display-bottomleft w3-padding">${i.ev_name}</div></a>
 				</div>
+				
 			</div>
 		`;
 	}
@@ -53,7 +55,7 @@ async function calendar_get_data(str,isSelect=true){
 	
 	if(isSelect){
 		calendar_reset_selector();
-		calendar_set_selector(Number(date_str_obj[2] - 1));	
+		calendar_set_selector(date_str_obj[2] - 1);	
 	}
 	
 }

@@ -85,7 +85,7 @@ if($result_query->num_rows > 0){
 								for($i=0;$i<7;$i++)
 								{
 									$date_actual = $temp_date - $start_wdate;
-
+									$date_actual_str = str_pad($date_actual,2,"0",STR_PAD_LEFT);
 									$data_is_valid_date = $temp_date > ($start_wdate) && $temp_date < ($start_wdate + $date_length + 1);
 									
 
@@ -93,15 +93,16 @@ if($result_query->num_rows > 0){
 									<td 
 									style="cursor: pointer;"
 									<?php
-									$class_temp = "class='";
+									$class_temp = " class='";
 									$is_exists = array_key_exists($date_actual,$arr_of_ev_remember);
-									$is_today  = ($date_value_str."-".$date_actual) == $date_now_str;
+									$is_today  = (($date_value_str."-".$date_actual_str) == $date_now_str);
 
 									if($is_exists && $is_today){
 										$class_temp.="w3-black ";
 									}else if($is_exists){
 										$class_temp.="w3-aqua ";
 									}else if($is_today){
+										echo "Hello world";
 										$class_temp.="w3-green selectioned ";
 									}
 									if($data_is_valid_date){
@@ -110,11 +111,9 @@ if($result_query->num_rows > 0){
 									$class_temp .= "'";
 
 									echo $class_temp;
-									?>
 									
-									<?php 
 									if($data_is_valid_date){
-										echo "onclick=\"calendar_get_data('$date_value_str-$date_actual')\"";	
+										echo "onclick=\"calendar_get_data('$date_value_str-$date_actual_str')\"";	
 									}
 									
 									?>
@@ -128,8 +127,9 @@ if($result_query->num_rows > 0){
 										}else{
 											$text_temp .= "0";
 										}
-										$text_temp .= " กิจกรรม";
+										$text_temp .= " กิจกรรม";										
 										echo $text_temp;
+										
 									}
 									?>
 								</td>
@@ -148,11 +148,11 @@ if($result_query->num_rows > 0){
 		</div>
 	</div>
 	<!-- Greeny bar -->
-	<div class="w3-col m12 l5 w3-green" style="height:500px;">
+	<div class="w3-col m12 l5 w3-green" >
 		<div class="w3-container w3-border">
 			<h2 id="dom_calendar_dateHeader"> Date  </h2>
 		</div>
-		<div class="w3-display-container" id="dom_calendar_card_container">
+		<div class="w3-container" id="dom_calendar_card_container">
 
 		</div>
 	</div>

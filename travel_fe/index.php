@@ -16,6 +16,7 @@ require("date_helper.php");
 
 	</body>
 	<script src="./tab/tabopen.js" defer="true"></script>
+	<script src="./tab/slideHelper.js" defer="true"></script>
 </html>
 <?php
 $conn->close();
