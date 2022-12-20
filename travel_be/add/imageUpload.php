@@ -6,7 +6,7 @@ function upload_generate_name(){
 function upload_move_file($tmpName,$fileExtension){
 	$basePath = "./../travel_fe/images/";
 	$fileName = upload_generate_name();
-	while(file_exists($basePath.$fileName.$fileExtension)){
+	while(file_exists($basePath.$fileName.".".$fileExtension)){
 		$fileName = upload_generate_name();
 	}
 	
@@ -23,6 +23,7 @@ function upload_image($inFiles){
 			pathinfo($inFiles["name"][$i])["extension"]
 		);
 	}
+	print_r($arrOfFiles);
 	return $arrOfFiles;
 	
 }

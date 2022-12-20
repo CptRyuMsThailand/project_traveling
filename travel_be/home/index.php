@@ -5,13 +5,15 @@ if(!isset($page_id)){
 ?>
 <div class="w3-container">
 	<div class="w3-bar" >
-		<a href="./index.php?page=ADD_PLACE" class="w3-bar-item w3-button">Add Posts</a>
+		<a href="./index.php?page=ADD_EVENT" class="w3-bar-item w3-button">Add Posts</a>
 
 	</div>
 	<table class="w3-table">
 		<thead>
 			<tr>
-				<th> Heading </th>
+				<th> Image </th>
+				<th> Name </th>
+				<th> Delete </th>
 			</tr>
 		</thead>
 		<tbody  id="table_main">
@@ -36,6 +38,13 @@ async function homeload(){
 		element += `
 			<tr>
 				<td> <img class="w3-image" style="height:100px;" src="${pathImage+image}"> </td>
+				<td> 
+				${i.ev_name} 
+				</td>
+				<td>
+				<a href="./index.php?page=DELETE_EVENT&delete_id=${i.ev_id}">&times;</a>
+				</td>
+				
 			</tr>
 
 		`;

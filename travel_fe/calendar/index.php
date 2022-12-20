@@ -1,4 +1,16 @@
 <?php
+
+function date_clamp($date_value_ym,$date_in_compare){
+	for($i=0;$i<2;$i++){
+		if($date_value_ym[$i] > $date_in_compare[$i]){//Past Year or future month
+			return 1;
+		}	
+		if($date_value_ym[$i] < $date_in_compare[$i]){//Future Year or future month
+			return 31;
+		}
+	}
+	return $date_in_compare[2];
+}
 if(!isset($FROM_INDEX)){
 	header("Location:./../index.php");
 }
@@ -17,11 +29,14 @@ $date_length = month_length(0+$date_value[1]-1,0+$date_value[0]);
 
 // Get all available event in month
 $arr_of_ev_remember = [];
-$result_query = $conn->query("SELECT ev_date_beg,ev_date_end FROM table_event WHERE ev_date_beg >= '".$date_value_str."-01' AND ev_date_end <= '".$date_value_str."-31'");
+$result_query = $conn->query("SELECT ev_date_beg,ev_date_end FROM table_event WHERE (ev_date_beg >= '".$date_value_str."-01' AND ev_date_beg <= '".$date_value_str."-31') OR (ev_date_end >= '".$date_value_str."-01' AND ev_date_end <= '".$date_value_str."-31')");
+print_r($result_query);
 if($result_query->num_rows > 0){
 	while($row = $result_query->fetch_assoc()){
-		$date_beg = explode("-",$row["ev_date_beg"])[2];
-		$date_end = explode("-",$row["ev_date_end"])[2];
+		echo "<br>";
+		print_r($row);
+		$date_beg = date_clamp($date_value,explode("-",$row["ev_date_beg"]));
+		$date_end = date_clamp($date_value,explode("-",$row["ev_date_end"]));
 		for($i = $date_beg; $i <= $date_end; $i++){
 			if(!array_key_exists($i, $arr_of_ev_remember)){
 				$arr_of_ev_remember[$i] = 1;

@@ -8,14 +8,15 @@ if(isset($_GET["page"])){
 
 ?>
 <html>
+	<meta charset="utf-8">
 	<link rel="stylesheet" href="./css/w3.css">
 
 	<body>
 		<?php
 			switch($page_id){
 				case "HOME" : require("./home/index.php");break;
-				case "ADD_PLACE" : require("./add/index.php");break;
-
+				case "ADD_EVENT" : require("./add/index.php");break;
+				case "DELETE_EVENT" : require("./delete/index.php");break;
 			}
 
 		?>
