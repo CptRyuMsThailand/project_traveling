@@ -9,9 +9,9 @@ if(isset($_POST["form_post"])){
 	$image_list_name = implode(",",upload_image($_FILES["form_image"]));
 	//print($image_list_name);
 	
-	$stmt = $conn->prepare("INSERT INTO table_event(ev_name,ev_date_beg,ev_date_end,ev_img_list,ev_origin) VALUES (?,?,?,(?),?)");
+	$stmt = $conn->prepare("INSERT INTO table_event(ev_name,ev_date_beg,ev_date_end,ev_img_list,ev_desc,ev_origin) VALUES (?,?,?,(?),?,?)");
 
-	$stmt->bind_param("ssssi",$_POST["form_name"],$_POST["form_date_start"],$_POST["form_date_end"],$image_list_name,getUserInfo($conn)["us_id"]);
+	$stmt->bind_param("sssssi",$_POST["form_name"],$_POST["form_date_start"],$_POST["form_date_end"],$image_list_name,$_POST["form_desc_value"],getUserInfo($conn)["us_id"]);
 
 	
 	if(!$stmt->execute()){
@@ -22,17 +22,29 @@ if(isset($_POST["form_post"])){
 	
 }
 ?>
-
-<form class="w3-form" method="POST" enctype="multipart/form-data" onsubmit="return testSubmit();">
-	<label class="w3-label"><input type="text" name="form_name" required> Name </label><br>
-	<label class="w3-label"><input type="date" name="form_date_start" id="form_date_start" required> Start Date </label><br>
-	<label class="w3-label"><input type="date" name="form_date_end" id="form_date_end" required> End Date </label><br>
-
-	<input type="file" id="form_image" name="form_image[]" accept=".jpg,.jpeg,.png" multiple class="w3-button"><br>
-	<button type="submit" name="form_post" class="w3-button"> POST </button>
-</form>
-<div class="w3-container" id="preview">
+<style>
 	
+</style>
+<form class="w3-container" method="POST" enctype="multipart/form-data" onsubmit="return testSubmit();">
+	<h2> Add Event </h2>
+	<label class="w3-label">Name <input type="text" name="form_name" class="w3-input w3-border" required> </label><br>
+	<label class="w3-label">Start Date<input type="date" class="w3-input w3-border" name="form_date_start" id="form_date_start" required>  </label><br>
+	<label class="w3-label">End Date <input type="date" class="w3-input w3-border" name="form_date_end" id="form_date_end" required> </label><br>
+	<label class="w3-label">Heading<textarea class="w3-input w3-border" name="form_desc_value"></textarea></label><br>
+
+	<label> Upload Image
+	<input type="file" id="form_image" name="form_image[]" accept=".jpg,.jpeg,.png" multiple class="w3-input">
+</label>
+	<br>
+	<button type="submit" name="form_post" class="w3-button w3-input w3-green"> POST </button>
+</form>
+<div class="w3-container" >
+	<h3>
+		Image Preview
+	</h3>
+	<ul id="preview" class="w3-ul">
+		
+	</ul>
 
 </div>
 <div class="w3-modal w3-black" id="image_preview" onclick="this.style.display = 'none';">
@@ -57,10 +69,10 @@ async function js_img_preview(){
 	}
 	const curFiles = form_image.files;
 	if(curFiles.length == 0){
-		preview.innerHTML = `<p> Not upload image yet </p>`;
+		preview.innerHTML = `<li> Not upload image yet </li>`;
 	}else{
 		for(let file of curFiles){
-			const listItem = document.createElement("div");
+			const listItem = document.createElement("li");
 			listItem.className = "w3-card w3-teal";
 			const imageContainer = new Image();
 			imageContainer.src = URL.createObjectURL(file);
