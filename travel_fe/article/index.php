@@ -8,7 +8,10 @@ $article_id = $_GET["articleid"];
 
 ?>
 <div id="iiii" class="w3-container">
-	<h2></h2>
+	<ul class="w3-ul w3-bottombar">
+		<li><h2 id="dom_header" class="w3-header"></h2></li>
+		<li><p id="dom_detail"></p></li>
+	</ul>
 
 </div>
 <div class="w3-modal w3-opacity" id="modal_error" style='display: none;'>
@@ -31,7 +34,9 @@ async function loading(){
 
 	let returnedData = await getArticle(article);
 	console.log(returnedData);
-	iiii.innerText = returnedData;
+	//iiii.innerText = returnedData;
+	dom_header.innerText = returnedData.value[0].ev_name;
+	dom_detail.innerText = returnedData.value[0].ev_desc;
 	if(returnedData.status == 404){
 		modal_error.style.display = "block";
 	}

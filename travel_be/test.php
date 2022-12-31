@@ -1,17 +1,20 @@
-<?php
-$key = openssl_random_pseudo_bytes(128);
-
-//$key should have been previously generated in a cryptographically safe way, like openssl_random_pseudo_bytes
-$plaintext = "message to be encrypted";
-$cipher = "aes-128-gcm";
-if (in_array($cipher, openssl_get_cipher_methods()))
-{
-    $ivlen = openssl_cipher_iv_length($cipher);
-    $iv = openssl_random_pseudo_bytes($ivlen);
-    $ciphertext = openssl_encrypt($plaintext, $cipher, $key, $options=0, $iv, $tag);
-    //store $cipher, $iv, and $tag for decryption later
-    echo base64_encode($ciphertext)."\n";
-    $original_plaintext = openssl_decrypt($ciphertext, $cipher, $key, $options=0, $iv, $tag);
-    echo $original_plaintext."\n";
-}
-?>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hello World</title>
+</head>
+<body>
+    <img src="./test/test1.php?article=18">
+    <div id="content"></div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
+<script>
+    window.onload = function(){
+        document.getElementById('content').innerHTML =
+      marked.parse('![imagetest](./test/test1.php?article=18)\n\n# Marked in the browser\n\nRendered by **marked**.');
+    }
+    
+</script>
+</html>
