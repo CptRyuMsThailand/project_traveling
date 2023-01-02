@@ -18,11 +18,12 @@ $article_id = $_GET["articleid"];
 	<div class="w3-modal-content w3-animate-zoom">
 		<h3 class="w3-text-black">Oops, Not found</h3><br>
 		<a href="index.php" class="w3-button w3-red"> Go back</a>
-	
+		
 	</div>	
 
 </div>
 <script src="./article/articleHelper.js" defer="true"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
 <script defer>
 window.addEventListener("load",loading);
 async function loading(){
@@ -36,7 +37,7 @@ async function loading(){
 	console.log(returnedData);
 	//iiii.innerText = returnedData;
 	dom_header.innerText = returnedData.value[0].ev_name;
-	dom_detail.innerText = returnedData.value[0].ev_desc;
+	dom_detail.innerHTML = marked.parse(returnedData.value[0].ev_desc);
 	if(returnedData.status == 404){
 		modal_error.style.display = "block";
 	}

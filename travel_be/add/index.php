@@ -42,8 +42,10 @@ if(isset($_POST["form_post"])){
 	<h3>
 		Image Preview
 	</h3>
-	<ul id="preview" class="w3-ul">
-		
+	<ul class="w3-ul">
+		<li style="overflow: scroll;" id="preview">
+			
+		</li>
 	</ul>
 
 </div>
@@ -69,11 +71,9 @@ async function js_img_preview(){
 	}
 	const curFiles = form_image.files;
 	if(curFiles.length == 0){
-		preview.innerHTML = `<li> Not upload image yet </li>`;
+		preview.innerHTML = `No image uploaded yet`;
 	}else{
 		for(let file of curFiles){
-			const listItem = document.createElement("li");
-			listItem.className = "w3-card w3-teal";
 			const imageContainer = new Image();
 			imageContainer.src = URL.createObjectURL(file);
 			imageContainer.height = 100;
@@ -87,8 +87,7 @@ async function js_img_preview(){
 			//listItem.style.height = imageContainer.height*1.2+"px";
 			
 
-			listItem.appendChild(imageContainer);
-			preview.appendChild(listItem);
+			preview.appendChild(imageContainer);
 		}
 		
 	}

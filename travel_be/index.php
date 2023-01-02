@@ -1,6 +1,6 @@
 <?php 
 include_once("redirect.php");
-$page_id = "HOME";
+$page_id = "event";
 if(isset($_GET["page"])){
 	$page_id = $_GET["page"];
 }
@@ -14,7 +14,7 @@ if(isset($_GET["page"])){
 	<body>
 		<?php
 			switch($page_id){
-				case "HOME" : require("./home/index.php");break;
+				case "event" : require("./event/index.php");break;
 				case "ADD_EVENT" : require("./add/index.php");break;
 				case "DELETE_EVENT" : require("./delete/index.php");break;
 			}
