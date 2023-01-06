@@ -27,6 +27,7 @@ require("tabHelper.php");
  <?php 
  switch($tabSelected){
   case $TAB_HOME : require("./homepage/index.php");break;
+  case $TAB_LINEARLIST : require("./list/index.php");break;
   case $TAB_CALENDAR : require("./calendar/index.php");break; 
   case $TAB_ARTICLE : require("./article/index.php");break;
 }

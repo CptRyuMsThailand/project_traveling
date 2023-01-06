@@ -52,14 +52,16 @@ function zeller_congruence($d,$m,$y){ // 0 is sunday, this function do not check
 	// date from 1 - 31 [can be out of range]
 	// month from 1 = January
 	// Year in christian epoch format eg 2000
-	if($m < 3){ // Less than march
+	/*if($m < 3){ // Less than march
 		$m = $m + 12;
 		$y = $y - 1;
 	}
 	$k = ($y % 100);
 	$j = floor($y / 100);
 	$h = (($d + floor((13*($m + 1))/5) + $k + floor($k / 4) + floor($j / 4) - 2 * $j)% 7 + 7) % 7;
-	return (($h + 2) % 7);
+	return (($h + 2) % 7);*/
+
+	return Date("w",mktime(0,0,0,$m+1,$d,$y));
 }
 function next_month($year,$month){
 	if($month >= 12){
