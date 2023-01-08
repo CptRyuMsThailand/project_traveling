@@ -16,7 +16,7 @@ async function windowload(){
 	interval();
 }
 
-let geo_f_load = false;
+let geo_f_load = true;
 
 async function interval(){
 	let lastUpdate = Date.now();

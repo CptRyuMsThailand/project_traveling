@@ -1,7 +1,10 @@
 <?php
 require("./../connection/connect.php");
 
-$dateNow = "2022-10-16";
+$dateNow = "2022-10-15";
+if(isset($_GET["date"])){
+	$dateNow = $_GET["date"];
+}
 
 $sql = "SELECT * FROM table_event LEFT JOIN table_place ON ev_ref_place_id = pl_id WHERE Date(?) BETWEEN ev_date_beg AND ev_date_end";
 

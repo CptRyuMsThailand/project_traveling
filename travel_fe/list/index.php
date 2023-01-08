@@ -15,7 +15,7 @@ require("./connection/connect.php");
 
 	</div>
 	<div class="w3-container" >
-		<ul class="w3-list" id="dom_list_output">
+		<ul class="w3-ul" id="dom_list_output">
 			
 		</ul>
 
@@ -27,7 +27,7 @@ require("./connection/connect.php");
 <script >
 function render_node(dataList,coord){
 
-	dom_list_output.innerHTML = "";
+	dom_list_output.innerText = "";
 	for(let i = 0,len = dataList.length;i < len; i++ ){
 		let baseLI = document.createElement("li");
 		let nameNode = document.createElement("div");
@@ -40,7 +40,7 @@ function render_node(dataList,coord){
 			let lon1 = Number(dataList[i].pl_geo_lon);
 			let lon2 = coord.longitude;
 			let distance = haversine(lat1,lon1,lat2,lon2);
-			nodeCoord.innerText = distance + "km";
+			nodeCoord.innerText = distance.toFixed(5) + "km";
 			baseLI.appendChild(nodeCoord);
 			
 		}
