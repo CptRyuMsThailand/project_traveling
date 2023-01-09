@@ -10,7 +10,7 @@ dom_date_select.addEventListener("change",function(){
 	geo_f_load = true;
 
 });
-
+let coord;
 async function windowload(){
 	//console.log(await getList());
 	interval();
@@ -25,7 +25,7 @@ async function interval(){
 		let nowTime = Date.now();
 		if(geo_f_load || (nowTime - lastUpdate > 15 * 1000)){
 			geo_f_load = false;
-			let coord = await getCoord();
+			coord = await getCoord();
 			render_node(await getList(),coord);
 			lastUpdate = Date.now();
 		}
