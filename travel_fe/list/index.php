@@ -35,7 +35,7 @@ function render_node(dataList,coord){
 
 	for(let i = 0,len = dataList.length;i < len; i++ ){
 		let baseLI = document.createElement("li");
-		let nameNode = document.createElement("div");
+		let nameNode = document.createElement("h3");
 		nameNode.innerText = dataList[i].ev_name;
 		baseLI.appendChild(nameNode);
 		let nodeLocal = document.createElement("div");
@@ -49,7 +49,7 @@ function render_node(dataList,coord){
 			let lon1 = Number(dataList[i].pl_geo_lon);
 			let lon2 = coord.longitude;
 			let distance = haversine(lat1,lon1,lat2,lon2);
-			nodeCoord.innerText = distance.toFixed(5) + "km";
+			nodeCoord.innerText = "ระยะทาง " + distance.toFixed(5) + " กิโลเมตร";
 			baseLI.appendChild(nodeCoord);
 			
 		}
