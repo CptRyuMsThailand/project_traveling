@@ -13,6 +13,9 @@ if(!isset($page_id)){
 			<tr>
 				<th> Image </th>
 				<th> Name </th>
+				<th> Date Start </th>
+				<th> Date End   </th>
+				<th> Edit </th>
 				<th> Delete </th>
 			</tr>
 		</thead>
@@ -40,6 +43,15 @@ async function homeload(){
 				<td> <img class="w3-image" style="height:100px;" src="${pathImage+image}"> </td>
 				<td> 
 				${i.ev_name} 
+				</td>
+				<td>
+				${i.ev_date_beg}
+				</td>
+				<td>
+				${i.ev_date_end}
+				</td>
+				<td>
+				<a href="./index.php?page=EDIT_EVENT&edit_id=${i.ev_id}" class="fa">&#xf040;</a>
 				</td>
 				<td>
 				<a href="./index.php?page=DELETE_EVENT&delete_id=${i.ev_id}">&times;</a>

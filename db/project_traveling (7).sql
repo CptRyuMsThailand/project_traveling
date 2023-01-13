@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 09, 2023 at 04:37 AM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.2.33
+-- Generation Time: Jan 13, 2023 at 10:29 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `table_event` (
   `ev_id` int(11) NOT NULL,
   `ev_name` text NOT NULL,
-  `ev_desc` text NOT NULL,
+  `ev_desc` text CHARACTER SET utf8 NOT NULL,
   `ev_date_beg` date NOT NULL,
   `ev_date_end` date NOT NULL,
   `ev_img_list` text NOT NULL,
@@ -43,8 +43,8 @@ CREATE TABLE `table_event` (
 --
 
 INSERT INTO `table_event` (`ev_id`, `ev_name`, `ev_desc`, `ev_date_beg`, `ev_date_end`, `ev_img_list`, `ev_ref_place_id`, `ev_origin`) VALUES
-(16, 'งานนมัสการองค์พระสมุทรเจดีย์', '', '2022-10-15', '2022-10-26', '1671528182.jpg,1671528183.jpg,1671528184.jpg', 1, 1),
-(18, 'งานอะไรสักอย่าง', '# ทดสอบหัวข้อ\r\n\r\nทดสอบเนื้อหา', '2022-12-31', '2022-12-31', '1672306544.jpg', 0, 1);
+(16, 'งานนมัสการองค์พระสมุทรเจดีย์', '# Header Testing', '2022-10-15', '2022-10-26', '1671528182.jpg,1671528183.jpg,1671528184.jpg', 1, 1),
+(18, 'งานอะไรสักอย่าง2', '			# ทดสอบหัวข้อ\r\n\r\nทดสอบเนื้อหา		', '2022-12-31', '2022-12-31', '1672306544.jpg', 1, 1);
 
 -- --------------------------------------------------------
 

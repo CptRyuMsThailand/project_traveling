@@ -10,16 +10,9 @@ if(isset($_GET["page"])){
 <html>
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="./css/w3.css">
-
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<body>
-		<?php
-			switch($page_id){
-				case "event" : require("./event/index.php");break;
-				case "ADD_EVENT" : require("./add/index.php");break;
-				case "DELETE_EVENT" : require("./delete/index.php");break;
-			}
-
-		?>
+		<?php include("./tab/index.php"); ?>
 
 
 	</body>
