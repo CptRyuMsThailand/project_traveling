@@ -8,11 +8,17 @@ let gps_options = {
 window.addEventListener("load",windowload);
 dom_date_select.addEventListener("change",function(){
 	geo_f_load = true;
+	history.replaceState(null,null,"index.php?pageName=1&date="+encodeURIComponent(dom_date_select.value));
 
 });
 let coord;
 async function windowload(){
 	//console.log(await getList());
+	const qString = window.location.search;
+	const urlParams = new URLSearchParams(qString);
+	if(urlParams.has("date")){
+		dom_date_select.value = decodeURIComponent(urlParams.get("date"));
+	}
 	interval();
 }
 
