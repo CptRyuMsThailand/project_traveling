@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "12345";
+$password = "";
 $dbName = "project_traveling";
 $conn = new mysqli($servername, $username, $password,$dbName);
 // Check connection

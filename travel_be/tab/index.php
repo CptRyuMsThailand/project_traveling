@@ -17,6 +17,9 @@ if(!isset($page_id)){
 		case "ADD_EVENT" : require("./add/index.php");break;
 		case "EDIT_EVENT" : require("./edit/index.php");break;
 		case "DELETE_EVENT" : require("./delete/index.php");break;
+		case "place" : require("./place/index.php");break;
+		case "ADD_PLACE" : require("./place/add/index.php");break;
+		case "EDIT_PLACE" : require("./place/edit/index.php");break;
 	}
 
 ?>

@@ -12,7 +12,8 @@ if(!isset($page_id)){
 		<thead>
 			<tr>
 				<th> Name </th>
-				<th> Desc </th>
+				<th> Link </th>
+				<th> Edit </th>
 				<th> Delete </th>
 			</tr>
 		</thead>
@@ -28,21 +29,26 @@ if(!isset($page_id)){
 window.addEventListener("load",homeload);
 async function homeload(){
 	let pathImage = "./../travel_fe/images/";
+	let basePlaceMap = "https://www.google.co.th/maps/place/";
 	let rawJSON = await web_request("./place/getDataList.php",null);
 	//console.log(rawJSON);
 	let dataLoad = JSON.parse(rawJSON);
 	
 	let element = ``;
 	for(let i of dataLoad){
-		let image = i.ev_img_list.split(",")[0];
 		element += `
 			<tr>
-				<td> <img class="w3-image" style="height:100px;" src="${pathImage+image}"> </td>
 				<td> 
-				${i.ev_name} 
+				${i.pl_name} 
 				</td>
 				<td>
-				<a href="./index.php?page=DELETE_PLACE&delete_id=${i.ev_id}">&times;</a>
+				<a target="new" href="${basePlaceMap + i.pl_geo_lat + "," + i.pl_geo_lon}"> Show in map</a>
+				</td>
+				<td>
+				<a href="./index.php?page=EDIT_PLACE&edit_id=${i.pl_id}" class="fa">&#xf040;</a>
+				</td>
+				<td>
+				<a href="./index.php?page=DELETE_PLACE&delete_id=${i.pl_id}">&times;</a>
 				</td>
 				
 			</tr>
