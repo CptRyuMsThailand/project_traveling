@@ -20,6 +20,7 @@ if(!isset($page_id)){
 		case "place" : require("./place/index.php");break;
 		case "ADD_PLACE" : require("./place/add/index.php");break;
 		case "EDIT_PLACE" : require("./place/edit/index.php");break;
+		case "DELETE_PLACE" : require("./place/delete/index.php");break;
 	}
 
 ?>
