@@ -4,34 +4,28 @@ require("tabHelper.php");
 
 
 ?>
+<div class="w3-top" style="z-index: 3;">
+  <div class="w3-bar w3-black">
+    <a href="./index.php?pageName=home" class="w3-bar-item w3-button"><b>HOME</b></a>
+    <a href="./index.php?pageName=linearlist" class="w3-bar-item w3-button"><b>List</b></a>
 
-<div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" style="width:150px;" id="mySidebar">
-  <button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close('mySidebar')">Close &times;</button>
+  </div>
 
-  <a href="?pageName=<?php echo $TAB_HOME;?>" class="w3-bar-item w3-button">Home</a>
-  <a href="?pageName=<?php echo $TAB_LINEARLIST;?>" class="w3-bar-item w3-button">List</a>
-  <a href="?pageName=<?php echo $TAB_CALENDAR;?>" class="w3-bar-item w3-button">Calendar</a>
 </div>
-<div class="w3-main" style="margin-left:150px; height:auto;">
-  <div class="w3-teal">
-    <div class="w3-container w3-hide-large w3-red">
-     <button class="w3-button w3-xlarge w3-hide-large" onclick="w3_open('mySidebar')">&#9776;</button>
-   </div>
-   <div class="w3-container w3-cell">
-     
-     <h1>My Page - <?php echo $TAB_ENUM[$tabSelected];?></h1>
-   </div>
- </div>
+<div class="w3-container w3-white" style="margin-top:20%; margin-left:20px; margin-right:20px; height:100%; z-index:2; position:relative;">
 
  <!-- This is body of programs -->
  <?php 
  switch($tabSelected){
-  case $TAB_HOME : require("./homepage/index.php");break;
-  case $TAB_LINEARLIST : require("./list/index.php");break;
-  case $TAB_CALENDAR : require("./calendar/index.php");break; 
-  case $TAB_ARTICLE : require("./article/index.php");break;
+  case "home" : require("./homepage/index.php");break;
+  case "linearlist" : require("./list/index.php");break;
+  case "calendar" : require("./calendar/index.php");break; 
+  case "article" : require("./article/index.php");break;
 }
 
 ?>
 
 </div>
+<footer class="w3-container w3-black">
+  Hello world
+</footer>
