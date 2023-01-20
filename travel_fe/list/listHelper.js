@@ -8,7 +8,7 @@ let gps_options = {
 window.addEventListener("load",windowload);
 dom_date_select.addEventListener("change",function(){
 	geo_f_load = true;
-	history.replaceState(null,null,"index.php?pageName=1&date="+encodeURIComponent(dom_date_select.value));
+	history.replaceState(null,null,"index.php?pageName=linearlist&date="+encodeURIComponent(dom_date_select.value));
 
 });
 let coord;

@@ -15,7 +15,7 @@ $result2 = $conn->query("SELECT * FROM table_event  INNER JOIN table_place ON pl
 </style>
 <div class="w3-container">
   <ul class="w3-ul" id="dom_main_ul">
-    <?php if($result1){?>
+    <?php if($result1 && $result1->num_rows > 0){?>
       <li>
         <h3> Upcoming event </h3>
       </li>
@@ -35,7 +35,15 @@ $result2 = $conn->query("SELECT * FROM table_event  INNER JOIN table_place ON pl
                 <div class="w3-container">
                   <ul class="w3-ul">
                     <li><b><?=$t_name;?></b></li>
-                    <li><?=$t_sdate;?> <br><b>ถึง</b><br> <?=$t_edate;?></li>
+                    <li>
+                      <a href="./index.php?pageName=linearlist&date=<?=$t_sdate;?>">
+                      <span class="fa fa-calendar"></span>
+                      <?=$t_sdate;?></a> <br>
+                      <b>ถึง</b><br> 
+                      <a href="./index.php?pageName=linearlist&date=<?=$t_edate;?>">
+                      <span class="fa fa-calendar"></span>
+                      <?=$t_edate;?></a>
+                    </li>
 
                   </ul>
 
@@ -49,7 +57,7 @@ $result2 = $conn->query("SELECT * FROM table_event  INNER JOIN table_place ON pl
         </div>
       </li>
     <?php }?>
-    <?php if($result2){?>
+    <?php if($result2 && $result2->num_rows > 0){?>
       <li>
         <h3> Past event </h3>
       </li>
@@ -69,7 +77,7 @@ $result2 = $conn->query("SELECT * FROM table_event  INNER JOIN table_place ON pl
                 <div class="w3-container">
                   <ul class="w3-ul">
                     <li><b><?=$t_name;?></b></li>
-                    <li><?=$t_sdate;?> <br><b>ถึง</b><br> <?=$t_edate;?></li>
+                    <li><span class="fa fa-calendar"><?=$t_sdate;?></span> <br><b>ถึง</b><br> <?=$t_edate;?></li>
 
                   </ul>
 

@@ -25,6 +25,7 @@ require("./connection/connect.php");
 </div>
 <script src="./list/listHelper.js"></script>
 <script >
+let gmap_baseurl = "https://www.google.com/maps/place/"
 function render_node(dataList,coord){
 
 	dom_list_output.innerText = "";
@@ -53,6 +54,16 @@ function render_node(dataList,coord){
 			baseLI.appendChild(nodeCoord);
 			
 		}
+		//Google map Div
+		{
+			let node_gmap = document.createElement("div");
+			node_gmap.innerHTML = `
+			<a href="${gmap_baseurl + dataList[i].pl_geo_lat + "," + dataList[i].pl_geo_lon}"><span class="fa fa-map-marker"></span> Show in map</a>
+
+			`;
+			baseLI.appendChild(node_gmap);
+		}
+		
 
 		dom_list_output.appendChild(baseLI);
 	}

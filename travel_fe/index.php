@@ -13,7 +13,7 @@ require("date_helper.php");
 	</head>
 	<body style="margin:0px; background-image: linear-gradient(to bottom,cyan,blue);">
 		<div style="width:100%; position: fixed; text-align:center; z-index:0; top:20%;">
-			<h2>ให้กูผ่านเหอะ กูไหว้ละ</h2>
+			<h2></h2>
 		</div>
 		<?php require("./tab/tab.php"); ?>
 
