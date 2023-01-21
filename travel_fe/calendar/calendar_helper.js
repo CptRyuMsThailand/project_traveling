@@ -1,3 +1,9 @@
+let gps_options = {
+	enableHighAccuracy : true,
+	timeout : 5000,
+	maximumAge : 0
+
+};
 let xhttp = new XMLHttpRequest();
 async function get_eventInDate(ymd_string){
 	try{
@@ -28,46 +34,99 @@ async function get_eventInDate(ymd_string){
 	}
 	
 }
-async function calendar_get_data(str,isSelect=true){
-	let date_str_obj = str.split("-");
-	dom_calendar_dateHeader.innerText = Number(date_str_obj[2]) + " " + 
-	$MONTH_ENUM_THAI[Number(date_str_obj[1])-1] + " พ.ศ. " + 
-	(Number(date_str_obj[0]) + 543);
-	let obj_json_arr = await get_eventInDate(str);
-	//console.log(obj_json_arr);
-	dom_calendar_card_container.innerHTML = "";
-	let elem_text = "";
-	for(let i of obj_json_arr){
-		let listOfImage = i.ev_img_list.split(",");
-		console.log(listOfImage);
-		elem_text += `
-			<div class="w3-content">
-				<div class="w3-display-container w3-text-white">
-					${createSlideshow("calendar_slideshow",listOfImage)}
-					<a href="?pageName=3&articleid=${i.ev_id}"><div class="w3-medium w3-display-bottomleft w3-padding">${i.ev_name}</div></a>
-				</div>
-				
-			</div>
-		`;
+async function getCoord(){
+	let prom1 = new Promise(
+			(resolve,reject)=>{
+				navigator.geolocation.getCurrentPosition(resolve,reject,gps_options);
+			}
+		);
+	try{
+		let res = await prom1;
+		return res.coords;
+	}catch(e){
+		return false;
 	}
+}
+function haversine(lat1,lon1,lat2,lon2){
+	let R = 6371;
+	let phi1 = lat1 * Math.PI / 180;
+	let phi2 = lat2 * Math.PI / 180;
+	let dphi = (lat2 - lat1) * Math.PI / 180;
+	let dlam = (lon2 - lon1) * Math.PI / 180;
+	let a = Math.sin(dphi / 2) * Math.sin(dphi / 2) +
+			Math.cos(phi1) * Math.cos(phi2) *
+			Math.sin(dlam / 2) * Math.sin(dlam / 2);
 
-	dom_calendar_card_container.innerHTML = elem_text;
+	let c = 2 * Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+	return R * c;
+		
+}
+async function calendar_get_data(instr){
 	
-	if(isSelect){
-		calendar_reset_selector();
-		calendar_set_selector(date_str_obj[2] - 1);	
+	let date_str_obj = instr.split("-");
+	let dataRet = await get_eventInDate(instr);
+	list_of_output.innerHTML = "";
+	let gps_coord = await getCoord();
+	console.log(gps_coord);
+	let arr_to_ret = [];
+	for(datas of dataRet){
+		let data_geolat = Number(datas.pl_geo_lat);
+		let data_geolon = Number(datas.pl_geo_lon);
+		let user_geolat = (gps_coord ? gps_coord.latitude : data_geolat);
+		let user_geolon = (gps_coord ? gps_coord.longitude : data_geolon);
+		let geodist = haversine(data_geolat,data_geolon,user_geolat,user_geolon);
+	
+		let str_to_ret = `
+	<li>
+		<div class="w3-row w3-light-grey" >
+			<div class="w3-col s12"><h2>${datas.ev_name}</h2></div>
+			<div class="w3-col s12 m4 w3-responsive">
+				<img src="./images/${datas.ev_img_list.split(",")[0]}" class="w3-image" style="max-width:320px;">
+			</div>
+			<div class="w3-col s12 m8">
+				<div class="w3-container">
+					<ul class="w3-ul">
+						<li>
+							<span class="fa fa-calendar"></span> ${datas.ev_date_beg}<br>
+							<span class="fa fa-calendar"></span> ${datas.ev_date_end}<br>
+						</li>
+						<li>
+							<span class="fa fa-map-marker"></span> ${datas.pl_name} ${gps_coord ? geodist.toFixed(3) + "km" : ""}
+						</li>
+						<li>
+							<span class="fa fa-graduation-cap"></span> ตำบล ${datas.lc_name.split(",")[1]} อำเภอ ${datas.lc_name.split(",")[0]}
+						</li>
+						<li>
+							<span class="fa fa-info"></span>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</li>
+	`;
+	arr_to_ret.push({dist:geodist,content : str_to_ret});
 	}
+	arr_to_ret.sort((a,b)=>{return a.dist - b.geodist;});
+	for(let i of arr_to_ret){
+		list_of_output.innerHTML += i.content;
+	}
+	
+	calendar_reset_selector();
+	calendar_set_selector(Number(date_str_obj[2]) - 1);	
+	
 	
 }
+const selectioned_color = "w3-green"
 function calendar_reset_selector(){
 	let dom_valid_class_date = document.getElementsByClassName("date-valid");
 	for(let i of dom_valid_class_date){
-		i.classList.remove("selectioned");
+		i.classList.remove(selectioned_color);
 	}
 }
 function calendar_set_selector(date_num){
 	let dom_selected_date = document.getElementsByClassName("date-valid")[date_num];
-	dom_selected_date.classList.add("selectioned");
+	dom_selected_date.classList.add(selectioned_color);
 }
 const $MONTH_ENUM_THAI = [
 	"มกราคม",
@@ -83,12 +142,3 @@ const $MONTH_ENUM_THAI = [
 	"พฤศจิกายน",
 	"ธันวาคม"
 ];
-window.addEventListener("load",
-	async function(){
-		let date_obj = new Date();
-		let str1 = date_obj.getFullYear().toString().padStart(4,"0");
-		let str2 = (date_obj.getMonth() + 1).toString().padStart(2,"0");
-		let str3 = date_obj.getDate().toString().padStart(2,"0");
-		await calendar_get_data(`${str1}-${str2}-${str3}`,false);
-	}
-);

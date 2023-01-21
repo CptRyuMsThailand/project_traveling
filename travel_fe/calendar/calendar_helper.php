@@ -5,16 +5,16 @@ if($requestType != 'POST'){
 }
 header("Content-Type: application/json; charset=UTF-8");
 require("./../connection/connect.php");
+$dateNow = $_POST["date"];
+$sql = "SELECT * FROM ((`table_event` INNER JOIN table_place ON table_event.ev_ref_place_id = table_place.pl_id) INNER JOIN table_local ON table_place.pl_amphoe = table_local.lc_id) WHERE Date(?) BETWEEN ev_date_beg AND ev_date_end";
 
-$date_input = $_POST['date'];
-
-$stmt = $conn->prepare("SELECT ev_id,ev_name,ev_img_list FROM table_event WHERE ? BETWEEN table_event.ev_date_beg AND table_event.ev_date_end");
-$stmt->bind_param("s",$date_input);
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s",$dateNow);
 $stmt->execute();
-$result = $stmt->get_result();
-$outp = $result->fetch_all(MYSQLI_ASSOC);
 
-echo json_encode($outp);
+echo json_encode($stmt->get_result()->fetch_all(MYSQLI_ASSOC) );
+
+
 
 
 

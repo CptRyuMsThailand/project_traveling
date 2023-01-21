@@ -8,6 +8,8 @@ require("tabHelper.php");
   <div class="w3-bar w3-black">
     <a href="./index.php?pageName=home" class="w3-bar-item w3-button"><b>HOME</b></a>
     <a href="./index.php?pageName=linearlist" class="w3-bar-item w3-button"><b>List</b></a>
+    <a href="./index.php?pageName=calendar" class="w3-bar-item w3-button"><b>Calendar</b></a>
+    
 
   </div>
 

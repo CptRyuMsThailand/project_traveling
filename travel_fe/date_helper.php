@@ -61,7 +61,7 @@ function zeller_congruence($d,$m,$y){ // 0 is sunday, this function do not check
 	$h = (($d + floor((13*($m + 1))/5) + $k + floor($k / 4) + floor($j / 4) - 2 * $j)% 7 + 7) % 7;
 	return (($h + 2) % 7);*/
 
-	return Date("w",mktime(0,0,0,$m+1,$d,$y));
+	return Date("w",mktime(0,0,0,$m,$d,$y));
 }
 function next_month($year,$month){
 	if($month >= 12){
