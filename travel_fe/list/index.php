@@ -10,9 +10,13 @@ require("./connection/connect.php");
 ?>
 
 <div class="w3-container">
-	<div class="w3-contents">
-		Selet Date <input class="w3-input" type="date" id="dom_date_select">
-
+	<div class="w3-row-padding">
+		<div class="w3-half">
+	 	   <input class="w3-input" type="search" id="dom_search">
+	 	 </div>
+	 	 <div class="w3-half">
+			<button class="w3-button" id="dom_bt_se"><span class="fa fa-search"></span></button>
+		</div>
 	</div>
 	<div class="w3-container" >
 		<ul class="w3-ul" id="dom_list_output">
@@ -53,6 +57,11 @@ function render_node(dataList,coord){
 			nodeCoord.innerText = "ระยะทาง " + distance.toFixed(5) + " กิโลเมตร";
 			baseLI.appendChild(nodeCoord);
 			
+		}
+		{
+			let node_pl_name = document.createElement("div");
+			node_pl_name.innerText = "" + dataList[i].pl_name;
+			baseLI.appendChild(node_pl_name);
 		}
 		//Google map Div
 		{

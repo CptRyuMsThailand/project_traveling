@@ -31,7 +31,7 @@ $result2 = $conn->query("SELECT * FROM table_event  INNER JOIN table_place ON pl
             ?>
             <div class="w3-col s12 m4 l3 w3-center" style="max-width: 400px;">
               <div class="w3-card-4">
-                <img src="<?="./images/".$t_img;?>" width="100%">
+                <img src="<?="./images/".$t_img;?>" width="400" class="w3-image w3-responsive">
                 <div class="w3-container">
                   <ul class="w3-ul">
                     <li><b><?=$t_name;?></b></li>
@@ -44,6 +44,7 @@ $result2 = $conn->query("SELECT * FROM table_event  INNER JOIN table_place ON pl
                       <span class="fa fa-calendar"></span>
                       <?=$t_edate;?></a>
                     </li>
+                    <li><a href="./index.php?pageName=article&articleid=<?=$t_id;?>" class="w3-button"> Read more</a></li>
 
                   </ul>
 
@@ -59,7 +60,7 @@ $result2 = $conn->query("SELECT * FROM table_event  INNER JOIN table_place ON pl
     <?php }?>
     <?php if($result2 && $result2->num_rows > 0){?>
       <li>
-        <h3> Past event </h3>
+        <h3> Past events </h3>
       </li>
       <li>
         <div class="w3-row-padding">
@@ -73,11 +74,20 @@ $result2 = $conn->query("SELECT * FROM table_event  INNER JOIN table_place ON pl
             ?>
             <div class="w3-col s12 m4 l3 w3-center" style="max-width: 400px;">
               <div class="w3-card-4">
-                <img src="<?="./images/".$t_img;?>" width="100%">
+                <img src="<?="./images/".$t_img;?>" width="400" class="w3-image w3-responsive">
                 <div class="w3-container">
                   <ul class="w3-ul">
                     <li><b><?=$t_name;?></b></li>
-                    <li><span class="fa fa-calendar"><?=$t_sdate;?></span> <br><b>ถึง</b><br> <?=$t_edate;?></li>
+                    <li>
+                      <a href="./index.php?pageName=linearlist&date=<?=$t_sdate;?>">
+                      <span class="fa fa-calendar"></span>
+                      <?=$t_sdate;?></a> <br>
+                      <b>ถึง</b><br> 
+                      <a href="./index.php?pageName=linearlist&date=<?=$t_edate;?>">
+                      <span class="fa fa-calendar"></span>
+                      <?=$t_edate;?></a>
+                    </li>
+                    <li><a href="./index.php?pageName=article&articleid=<?=$t_id;?>" class="w3-button"> Read more</a></li>
 
                   </ul>
 

@@ -4,6 +4,7 @@ let gps_options = {
 	maximumAge : 0
 
 };
+let google_map_ext_url = "https://www.google.com/maps/place/"
 let xhttp = new XMLHttpRequest();
 async function get_eventInDate(ymd_string){
 	try{
@@ -61,6 +62,7 @@ function haversine(lat1,lon1,lat2,lon2){
 	return R * c;
 		
 }
+
 async function calendar_get_data(instr){
 	
 	let date_str_obj = instr.split("-");
@@ -97,7 +99,9 @@ async function calendar_get_data(instr){
 							<span class="fa fa-graduation-cap"></span> ตำบล ${datas.lc_name.split(",")[1]} อำเภอ ${datas.lc_name.split(",")[0]}
 						</li>
 						<li>
-							<span class="fa fa-info"></span>
+							<a href="./index.php?pageName=article&articleid=${datas.ev_id}" class="w3-button w3-green"><span class="fa fa-info"></span> Read More</a> 
+							<a href="${google_map_ext_url + data_geolat + "," + data_geolon }" class="w3-button w3-green" target="new"><span class="fa fa-map"></span> Open in google map</a> 
+							
 						</li>
 					</ul>
 				</div>

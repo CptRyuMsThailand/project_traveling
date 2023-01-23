@@ -6,18 +6,19 @@ let gps_options = {
 };
 
 window.addEventListener("load",windowload);
-dom_date_select.addEventListener("change",function(){
+dom_search.addEventListener("search",search_data);
+dom_bt_se.addEventListener("click",search_data);
+function search_data(){
 	geo_f_load = true;
-	history.replaceState(null,null,"index.php?pageName=linearlist&date="+encodeURIComponent(dom_date_select.value));
-
-});
+	history.replaceState(null,null,"index.php?pageName=linearlist&kword="+encodeURIComponent(dom_search.value))
+}
 let coord;
 async function windowload(){
 	//console.log(await getList());
 	const qString = window.location.search;
 	const urlParams = new URLSearchParams(qString);
-	if(urlParams.has("date")){
-		dom_date_select.value = decodeURIComponent(urlParams.get("date"));
+	if(urlParams.has("kword")){
+		dom_search.value = decodeURIComponent(urlParams.get("kword"));
 	}
 	interval();
 }
@@ -61,7 +62,7 @@ function getList(){
 			let result = JSON.parse(xhttp.response);
 			resolve(result);
 		}
-		xhttp.open("post","./list/get_list.php?date="+dom_date_select.value,true);
+		xhttp.open("post","./list/get_list.php?kword="+dom_search.value,true);
 		xhttp.send();
 
 
