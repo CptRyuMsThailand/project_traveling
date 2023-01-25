@@ -10,7 +10,11 @@ $article_id = $_GET["articleid"];
 <div id="iiii" class="w3-container">
 	<ul class="w3-ul w3-bottombar">
 		<li><h2 id="dom_header" class="w3-header"></h2></li>
-		<li><p id="dom_detail"></p></li>
+		<li><div id="dom_detail" class="w3-container"></div></li>
+	</ul>
+	<ul class="w3-ul w3-bottombar">
+		<li> <h2> Viewpoint </h2></li>
+		<li><div id="dom_viewpoint" class="w3-container"></div></li>
 	</ul>
 
 </div>
@@ -25,8 +29,8 @@ $article_id = $_GET["articleid"];
 <script src="./article/articleHelper.js" defer="true"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
 <script defer>
-window.addEventListener("load",loading);
-async function loading(){
+window.addEventListener("load",loading_article);
+async function loading_article(){
 	const queryString = window.location.search;
 	const searchParam = new URLSearchParams(queryString);
 	const article = searchParam.get("articleid");
@@ -34,6 +38,8 @@ async function loading(){
 	//document.getElementById("iiii").innerText = JSON.stringify(await getArticle(article));
 
 	let returnedData = await getArticle(article);
+	let returnedData2 = await get_viewpoint(returnedData.value[0].ev_ref_place_id);
+	dom_viewpoint.innerHTML = returnedData2;
 	console.log(returnedData);
 	//iiii.innerText = returnedData;
 	dom_header.innerText = returnedData.value[0].ev_name;

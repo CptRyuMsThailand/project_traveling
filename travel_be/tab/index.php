@@ -24,6 +24,7 @@ if(!isset($page_id)){
 		case "EDIT_PLACE" : require("./place/edit/index.php");break;
 		case "DELETE_PLACE" : require("./place/delete/index.php");break;
 		case "files" : require("./fileUpload/index.php");break;
+		case "DELETE_FILE" : require("./fileUpload/delete.php");break;
 	}
 
 ?>
