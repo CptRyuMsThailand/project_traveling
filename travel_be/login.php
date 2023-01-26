@@ -44,7 +44,7 @@ if(isset($_POST["login"])){
 			<label class="w3-label w3-validate">Password</label></br>
 
 
-			<button class="w3-btn w3-section w3-teal w3-ripple"> Log in </button><br>
+			<button class="w3-btn w3-section w3-teal w3-ripple" type="submit" name="login"> Log in </button><br>
 
 		</form>
 	
