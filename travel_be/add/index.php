@@ -30,10 +30,10 @@ if(isset($_POST["form_post"])){
 	<label class="w3-label">Name <input type="text" name="form_name" class="w3-input w3-border" required> </label><br>
 	<label class="w3-label">Start Date<input type="date" class="w3-input w3-border" name="form_date_start" id="form_date_start" required>  </label><br>
 	<label class="w3-label">End Date <input type="date" class="w3-input w3-border" name="form_date_end" id="form_date_end" required> </label><br>
-	<label class="w3-label">Heading<textarea class="w3-input w3-border" name="form_desc_value"></textarea></label><br>
+	<label class="w3-label">Data<textarea class="w3-input w3-border" name="form_desc_value"></textarea></label><br>
 
 	<label> Upload Image
-	<input type="file" id="form_image" name="form_image[]" accept=".jpg,.jpeg,.png" multiple class="w3-input"/>
+	<input type="file" id="form_image" name="form_image" accept="image/*" class="w3-input"/>
 	</label><br>
 	<label class="w3-label">
 		สถานที่อ้างอิง
@@ -80,7 +80,9 @@ if(isset($_POST["form_post"])){
 </div>
 
 
-
+<div class="w3-container">
+	
+</div>
 
 <script defer="true">
 window.addEventListener("load",js_img_preview);

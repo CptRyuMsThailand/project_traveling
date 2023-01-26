@@ -5,10 +5,12 @@ if(!isset($page_id)){
 }
 ?>
 
-<div class="w3-sidebar w3-bar-block" style="width: 15%;">
-	<a href="index.php?page=event" class="w3-bar-item w3-button"> Event </a>
-	<a href="index.php?page=place" class="w3-bar-item w3-button"> Place </a>
-	<a href="logout.php" class="w3-bar-item w3-button">Logout</a>
+<div class="w3-sidebar w3-bar-block w3-black" style="width: 15%;">
+	<a href="index.php?page=event" class="w3-bar-item w3-button"> <h3>Event</h3> </a>
+	<a href="index.php?page=place" class="w3-bar-item w3-button"> <h3>Place</h3> </a>
+	<a href="index.php?page=files" class="w3-bar-item w3-button"> <h3>Files</h3> </a>
+	
+	<a href="logout.php" class="w3-bar-item w3-button"><h3>Logout</h3></a>
 </div>
 <div style="margin-left:15%;">
 <?php
@@ -21,6 +23,8 @@ if(!isset($page_id)){
 		case "ADD_PLACE" : require("./place/add/index.php");break;
 		case "EDIT_PLACE" : require("./place/edit/index.php");break;
 		case "DELETE_PLACE" : require("./place/delete/index.php");break;
+		case "files" : require("./fileUpload/index.php");break;
+		case "DELETE_FILE" : require("./fileUpload/delete.php");break;
 	}
 
 ?>
