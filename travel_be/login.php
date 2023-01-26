@@ -22,19 +22,35 @@ if(isset($_POST["login"])){
 ?>
 
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title > Login required </title>
-	</head>
-	<link rel="stylesheet" href="./css/w3.css">
-	<body>
-		<form action="./login.php" method="POST">
-			<label><input type="text" name="username"> Username </label><br>
-			<label><input type="password" name="password"> Password </label><br>
-			<button class="w3-button" name="login">Login</button>
+<head>
+	<meta charset="utf-8">
+	<title > Login required </title>
+</head>
+<link rel="stylesheet" href="./css/w3.css">
+<body>
+
+
+
+<center style="padding-top:10%;">
+	<div class="w3-container w3-margin-" style="width:320px; ">
+		
+		<form class="w3-container w3-card-4" action="./login.php" method="POST">
+			<h1>เข้าสู่ระบบ</h1>
+			<br>
+			<input class="w3-input" type="text" style="width:90%" required name="username">
+			<label class="w3-label w3-validate">Username</label></br>
+			<br>
+			<input class="w3-input" type="password" style="width:90%" required name="password">
+			<label class="w3-label w3-validate">Password</label></br>
+
+
+			<button class="w3-btn w3-section w3-teal w3-ripple"> Log in </button><br>
 
 		</form>
-	</body>
+	
+	</div>
+	</center>
+</body>
 
 
 </html>
