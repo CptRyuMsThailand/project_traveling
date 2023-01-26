@@ -29,21 +29,21 @@ $curr_year = (new DateTime($date_now))->format("Y");
 <link rel="stylesheet" href="./calendar/calendar_helper.css">
 <div class="w3-rows w3-centered" style="width:100%;">
 	<div class="w3-cols s12">
-		<form method="GET">
-			<input type="month" name="date" value="<?=$date_now;?>" class="w3-button">
-			<input type="hidden" name="pageName" value="calendar">
-			<button type="submit"> GO </button>
+		<form method="GET" id="ssubmit">
+			<label><h3 style="display:inline;">เลือกเดือน</h3><input type="month" name="date" value="<?=$date_now;?>" class="w3-button" style="font-size:18px;" onchange="ssubmit.submit();"></label>
+			<input type="hidden" name="pageName" value="calendar" >
+			
 		</form>
 		<center class="w3-responsive">
 			<table class="w3-table mycalendar w3-mobile" style="max-width: 350px;">
 				<tr>
-					<th > Sun </th>
-					<th > Mon </th>
-					<th > Tue </th>
-					<th > Wed </th>
-					<th > Thu </th>
-					<th > Fri </th>
-					<th > Sat </th>
+					<th > อา </th>
+					<th > จ </th>
+					<th > อ </th>
+					<th > พ </th>
+					<th > พฤ </th>
+					<th > ศ </th>
+					<th > ส </th>
 				</tr>
 				<?php
 				$wd_count = 0;

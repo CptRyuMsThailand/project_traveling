@@ -13,13 +13,9 @@ if(isset($_GET["delete_id"])){
 	$stmt->execute();
 	$result = $stmt->get_result();
 	$res = $result->fetch_all(MYSQLI_ASSOC);
-	if(count($res) == 1){
-		$img_list = $res[0]['ev_img_list'];
-		$is_exists = true;
-	}
+	
 }
 if(isset($_POST["ch_yes"]) && $is_exists){
-	delete_image(explode(",", $img_list));
 	$stmt = $conn->prepare("DELETE FROM table_event WHERE ? = ev_id");
 	$stmt->bind_param("i",$_GET["delete_id"]);
 	$stmt->execute();

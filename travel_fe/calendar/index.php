@@ -9,6 +9,9 @@ if(!isset($FROM_INDEX)){
 <div class="w3-container">
 	<ul class="w3-ul">
 		<li>
+			<center><h2>ค้นหากิจกรรมผ่านปฏิทิน</h2></center>
+		</li>
+		<li>
 			<div class="w3-row-padding w3-center" style="width: 100%;">
 				<div class="w3-cols s12">
 					<?php

@@ -11,6 +11,7 @@ if(!isset($page_id)){
 	<table class="w3-table">
 		<thead>
 			<tr>
+				<th> ID </th>
 				<th> Name </th>
 				<th> Link </th>
 				<th> Edit </th>
@@ -38,6 +39,9 @@ async function homeload(){
 	for(let i of dataLoad){
 		element += `
 			<tr>
+				<td>
+				${i.pl_id}
+				</td>
 				<td> 
 				${i.pl_name} 
 				</td>

@@ -5,13 +5,13 @@ if(!isset($page_id)){
 require("./connection/connect.php");
 if(isset($_POST["form_post"])){
 	require("imageUpload.php");
-	print_r($_FILES["form_image"]);
-	$image_list_name = implode(",",upload_image($_FILES["form_image"]));
+	//print_r($_FILES["form_image"]);
+	//$image_list_name = implode(",",upload_image($_FILES["form_image"]));
 	//print($image_list_name);
 	
-	$stmt = $conn->prepare("INSERT INTO table_event(ev_name,ev_date_beg,ev_date_end,ev_img_list,ev_desc,ev_origin,ev_ref_place_id) VALUES (?,?,?,(?),?,?,?)");
+	$stmt = $conn->prepare("INSERT INTO table_event(ev_name,ev_date_beg,ev_date_end,ev_img_list,ev_desc,ev_origin,ev_ref_place_id) VALUES (?,?,?,?,?,?,?)");
 
-	$stmt->bind_param("sssssii",$_POST["form_name"],$_POST["form_date_start"],$_POST["form_date_end"],$image_list_name,$_POST["form_desc_value"],getUserInfo($conn)["us_id"],$_POST["form_place_id"]);
+	$stmt->bind_param("sssssii",$_POST["form_name"],$_POST["form_date_start"],$_POST["form_date_end"],$_POST["form_image"],$_POST["form_desc_value"],getUserInfo($conn)["us_id"],$_POST["form_place_id"]);
 
 	
 	if(!$stmt->execute()){

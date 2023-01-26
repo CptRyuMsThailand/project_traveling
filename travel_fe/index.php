@@ -5,7 +5,7 @@ require("date_helper.php");
 ?>
 
 <!doctype html>
-<html lang="en">
+<html lang="th">
 	<head>
 		<meta charset="utf-8">
     	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,16 +14,12 @@ require("date_helper.php");
 	<style>
 		body{
 			margin:0px; 
-			background-image: linear-gradient(to bottom,cyan,blue);
-			background-attachment : fixed;
-			background-position : center;
-			background-repeat : no-repeat;
-			min-height: 100vh;
+			
 		}
 	</style>
 	<body style=" ">
-		<div style="width:100%; position: fixed; text-align:center; z-index:0; top:20%;">
-			<h2></h2>
+		<div >
+			<h2>แนะนำกิจกรรมท่องเที่ยวเชิงวัฒนธรรม</h2>
 		</div>
 		<?php require("./tab/tab.php"); ?>
 

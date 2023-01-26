@@ -9,8 +9,8 @@ window.addEventListener("load",windowload);
 dom_search.addEventListener("search",search_data);
 dom_bt_se.addEventListener("click",search_data);
 function search_data(){
-	geo_f_load = true;
-	history.replaceState(null,null,"index.php?pageName=linearlist&kword="+encodeURIComponent(dom_search.value))
+	history.replaceState(null,null,"index.php?pageName=linearlist&kword="+encodeURIComponent(dom_search.value));
+	interval();
 }
 let coord;
 async function windowload(){
@@ -20,25 +20,15 @@ async function windowload(){
 	if(urlParams.has("kword")){
 		dom_search.value = decodeURIComponent(urlParams.get("kword"));
 	}
-	interval();
+	await interval();
 }
 
 let geo_f_load = true;
 
 async function interval(){
-	let lastUpdate = Date.now();
-	while(true){
-
-		let nowTime = Date.now();
-		if(geo_f_load || (nowTime - lastUpdate > 15 * 1000)){
-			geo_f_load = false;
-			coord = await getCoord();
-			render_node(await getList(),coord);
-			lastUpdate = Date.now();
-		}
-		await wait16();
-	}
-
+	coord = await getCoord();
+	render_node(await getList(),coord);
+	
 }
 async function getCoord(){
 	let prom1 = new Promise(

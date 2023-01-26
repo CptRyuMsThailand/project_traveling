@@ -3,24 +3,27 @@ if(!isset($FROM_INDEX)){
   header("Location:./../index.php");
 }
 
-$result1 = $conn->query("SELECT * FROM table_event WHERE DATE(ev_date_end) >= NOW() ORDER BY ev_date_beg ASC LIMIT 3");
-$result2 = $conn->query("SELECT * FROM table_event  INNER JOIN table_place ON pl_id = ev_ref_place_id WHERE DATE(ev_date_beg) < NOW() ORDER BY ev_date_end DESC LIMIT 3");
+$result1 = $conn->query("SELECT * FROM table_event  INNER JOIN table_place ON pl_id = ev_ref_place_id WHERE DATE(ev_date_beg) >= NOW() ORDER BY ev_date_beg ASC LIMIT 6");
+$result2 = $conn->query("SELECT * FROM table_event  INNER JOIN table_place ON pl_id = ev_ref_place_id WHERE DATE(ev_date_beg) < NOW() ORDER BY ev_date_end DESC LIMIT 6");
 ?>
 <style type="text/css">
-  #dom_main_ul li{
-    padding-top : 16px;
+  
+  body{
   }
 
 
 </style>
 <div class="w3-container">
+  <div class="w3-container">
+    <h2>ประกาศกิจกรรม</h2>
+  </div>
   <ul class="w3-ul" id="dom_main_ul">
     <?php if($result1 && $result1->num_rows > 0){?>
       <li>
-        <h3> Upcoming event </h3>
+        <h3> กิจกรรมที่กำลังจะเริ่ม </h3>
       </li>
       <li>
-        <div class="w3-row-padding">
+        <div class="w3-row" >
           <?php
           while($rows = $result1->fetch_assoc()){
             $t_id = $rows["ev_id"];
@@ -29,26 +32,23 @@ $result2 = $conn->query("SELECT * FROM table_event  INNER JOIN table_place ON pl
             $t_sdate = $rows["ev_date_beg"];
             $t_edate = $rows["ev_date_end"];
             ?>
-            <div class="w3-col s12 m4 l3 w3-center" style="max-width: 400px;">
-              <div class="w3-card-4">
-                <img src="<?="./images/".$t_img;?>" width="400" class="w3-image w3-responsive">
-                <div class="w3-container">
-                  <ul class="w3-ul">
-                    <li><b><?=$t_name;?></b></li>
-                    <li>
-                      <a href="./index.php?pageName=linearlist&date=<?=$t_sdate;?>">
-                      <span class="fa fa-calendar"></span>
-                      <?=$t_sdate;?></a> <br>
-                      <b>ถึง</b><br> 
-                      <a href="./index.php?pageName=linearlist&date=<?=$t_edate;?>">
-                      <span class="fa fa-calendar"></span>
-                      <?=$t_edate;?></a>
-                    </li>
-                    <li><a href="./index.php?pageName=article&articleid=<?=$t_id;?>" class="w3-button"> Read more</a></li>
-
-                  </ul>
-
+            <div class="w3-col s12 m4" style="height:400px;">
+              <div class="w3-container w3-black">
+                <center>
+                <img src="<?="./images/".$t_img;?>" style="max-width: 400px;" class="w3-opacity-min w3-responsive">
+              </center>
+                <div class="w3-container w3-text-white w3-bottombar"> 
+                  <h2 style="font-size:18px;"><?=$t_name;?></h2>
+                  
                 </div>
+                <div class="w3-container w3-text-white">
+                  <?=$t_sdate;?> | <?=$t_edate?>
+                </div>
+                <div class="w3-container">
+                <a href="./index.php?pageName=article&articleid=<?=$t_id;?>" class="w3-button w3-green">
+                  รายละเอียด
+                </a>
+              </div>
 
               </div>
             </div>
@@ -70,6 +70,7 @@ $result2 = $conn->query("SELECT * FROM table_event  INNER JOIN table_place ON pl
             $t_name = $rows["ev_name"];
             $t_img = explode(",",$rows["ev_img_list"])[0];
             $t_sdate = $rows["ev_date_beg"];
+
             $t_edate = $rows["ev_date_end"];
             ?>
             <div class="w3-col s12 m4 l3 w3-center" style="max-width: 400px;">

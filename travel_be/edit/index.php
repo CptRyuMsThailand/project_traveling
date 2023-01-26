@@ -11,21 +11,19 @@ $edit_id = $_GET["edit_id"];
 
 if(isset($_POST["form_post"])){
 	$image_data_current = $_POST["form_image_old"];
-	if(!empty($_POST["form_image"])){
-		delete_image(explode(",",$image_data_current));
-		$image_data_current = implode(",",upload_image($_FILES["form_image"]));
-	}
+	
 	$stmt4 = $conn->prepare("UPDATE table_event SET ev_name = ?,ev_date_beg = ?,ev_date_end = ?,ev_img_list = ?,ev_desc = ?,ev_ref_place_id = ? WHERE ev_id = ?");
 	$stmt4->bind_param(
 		"sssssii",
 		$_POST["form_name"],
 		$_POST["form_date_start"],
 		$_POST["form_date_end"],
-		$image_data_current,
+		$_POST["form_image"],
 		$_POST["form_desc_value"],
 		$_POST["form_place_id"],
 		$edit_id
 	);
+
 	$stmt4->execute();
 
 	header("Location:./index.php");
@@ -54,7 +52,7 @@ $result2 = $stmt2->get_result()->fetch_all(MYSQLI_ASSOC)[0];
 	</label><br>
 
 	<label> Upload Image
-	<input type="file" id="form_image" name="form_image[]" accept=".jpg,.jpeg,.png" multiple class="w3-input"/>
+	<input type="text" id="form_image" name="form_image" class="w3-input" value="<?=$result2["ev_img_list"];?>"/>
 	</label><br>
 	<label class="w3-label">
 		สถานที่อ้างอิง

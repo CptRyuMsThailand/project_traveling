@@ -99,8 +99,8 @@ async function calendar_get_data(instr){
 							<span class="fa fa-graduation-cap"></span> ตำบล ${datas.lc_name.split(",")[1]} อำเภอ ${datas.lc_name.split(",")[0]}
 						</li>
 						<li>
-							<a href="./index.php?pageName=article&articleid=${datas.ev_id}" class="w3-button w3-green"><span class="fa fa-info"></span> Read More</a> 
-							<a href="${google_map_ext_url + data_geolat + "," + data_geolon }" class="w3-button w3-green" target="new"><span class="fa fa-map"></span> Open in google map</a> 
+							<a href="./index.php?pageName=article&articleid=${datas.ev_id}" class="w3-button w3-green"><span class="fa fa-info"></span> รายละเอียด</a> 
+							<a href="${google_map_ext_url + data_geolat + "," + data_geolon }" class="w3-button w3-green" target="new"><span class="fa fa-map"></span> เปิดใน Google Map</a> 
 							
 						</li>
 					</ul>

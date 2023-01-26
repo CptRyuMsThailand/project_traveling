@@ -14,8 +14,8 @@ $article_id = $_GET["articleid"];
 		<li><h2 id="dom_header" class="w3-header"></h2></li>
 		<li>
 			<div class="w3-bar w3-white" >
-				<button onclick="article_set_tab(tab_main_article);" class="w3-bar-item w3-button w3-border"> Info </button>
-				<button onclick="article_set_tab(tab_view_article);" class="w3-bar-item w3-button w3-border"> Viewpoint </button>
+				<button onclick="article_set_tab(tab_main_article);" class="w3-bar-item w3-button w3-border"> รายละเอียด </button>
+				<button onclick="article_set_tab(tab_view_article);" class="w3-bar-item w3-button w3-border"> จุดชมวิว </button>
 			</div>
 		</li>
 		<li>
@@ -25,7 +25,7 @@ $article_id = $_GET["articleid"];
 				<li><div id="dom_detail" class="w3-container"></div></li>
 			</ul>
 			<ul class="w3-ul w3-bottombar" id="tab_view_article">
-				<li> <h2> Viewpoint </h2></li>
+				<li> <h2> จุดชมวิว </h2></li>
 				<li><div id="dom_viewpoint" class="w3-container"></div></li>
 			</ul>
 		</li>

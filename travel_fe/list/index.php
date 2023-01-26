@@ -10,6 +10,9 @@ require("./connection/connect.php");
 ?>
 
 <div class="w3-container">
+	<div class="w3-container">
+		<h2>ค้นหากิจกรรม</h2>
+	</div>
 	<div class="w3-row-padding">
 		<div class="w3-half">
 	 	   <input class="w3-input" type="search" id="dom_search">

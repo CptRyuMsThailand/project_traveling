@@ -11,7 +11,7 @@ $result2 = $stmt2->get_result();
 ?>
 <table class="w3-table">
 	<tr>
-		<th> ID </th><th> Image </th><th> File Name </th><th> File Path</th>
+		<th> ID </th><th> Image </th><th> File Name </th><th> File Path</th><th> Delete </th>
 	</tr>
 <?php
 if($result2){
@@ -22,6 +22,7 @@ if($result2){
 			<td><img width="100" src="./../travel_fe/images/<?=$row['file_path']?>" onclick="dom_image_review_img.src=this.src; dom_image_review.style.display='block';"></td>
 			<td><?=$row["file_name"]?></td>
 			<td><?="./images/".$row["file_path"]?></td>
+			<td><a href="./index.php?page=DELETE_FILE&delid=<?=$row["file_id"];?>"> X </a></td>
 			
 
 

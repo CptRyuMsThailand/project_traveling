@@ -4,17 +4,15 @@ require("tabHelper.php");
 
 
 ?>
-<div class="w3-top" style="z-index: 3;">
   <div class="w3-bar w3-black">
-    <a href="./index.php?pageName=home" class="w3-bar-item w3-button w3-border"><b>HOME</b></a>
-    <a href="./index.php?pageName=linearlist" class="w3-bar-item w3-button w3-border"><b>List</b></a>
-    <a href="./index.php?pageName=calendar" class="w3-bar-item w3-button w3-border"><b>Calendar</b></a>
+    <a href="./index.php?pageName=home" class="w3-bar-item w3-button w3-border <?php if($tabSelected == "home")echo "w3-green";?>" ><b> ประกาศกิจกรรม </b></a>
+    <a href="./index.php?pageName=linearlist" class="w3-bar-item w3-button w3-border <?php if($tabSelected == "linearlist")echo "w3-green";?>"><b>ค้นหากิจกรรม</b></a>
+    <a href="./index.php?pageName=calendar" class="w3-bar-item w3-button w3-border <?php if($tabSelected == "calendar")echo "w3-green";?>"><b>ปฏิทินกิจกรรม</b></a>
     
 
   </div>
 
-</div>
-<div class="w3-container w3-white" style="margin-top:20%; margin-left:20px; margin-right:20px; height:100%; z-index:2; position:relative;">
+<div class="w3-container w3-white">
 
  <!-- This is body of programs -->
  <?php 
@@ -28,6 +26,3 @@ require("tabHelper.php");
 ?>
 
 </div>
-<footer class="w3-container w3-black">
- 
-</footer>
