@@ -8,8 +8,9 @@ require("date_helper.php");
 <html lang="th">
 	<head>
 		<meta charset="utf-8">
-    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
 		<?php require("bootstrap.php"); ?>
+		<title> Travel Event Recommendation</title>
 	</head>
 	<style>
 		body{
@@ -17,9 +18,9 @@ require("date_helper.php");
 			
 		}
 	</style>
-	<body style=" ">
+	<body class="w3-content w3-light-grey" style="max-width:1600px;">
 		<div >
-			<h2>แนะนำกิจกรรมท่องเที่ยวเชิงวัฒนธรรม</h2>
+			
 		</div>
 		<?php require("./tab/tab.php"); ?>
 

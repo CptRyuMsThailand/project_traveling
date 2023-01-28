@@ -2,7 +2,6 @@ let gps_options = {
 	enableHighAccuracy : true,
 	timeout : 5000,
 	maximumAge : 0
-
 };
 let google_map_ext_url = "https://www.google.com/maps/place/"
 let xhttp = new XMLHttpRequest();
@@ -62,14 +61,19 @@ function haversine(lat1,lon1,lat2,lon2){
 	return R * c;
 		
 }
-
+let calendar_is_executing = false;
 async function calendar_get_data(instr){
-	
+	if(calendar_is_executing){
+		console.log("Double Clicking");
+		return;
+	}
+	calendar_is_executing = true;
 	let date_str_obj = instr.split("-");
 	let dataRet = await get_eventInDate(instr);
 	list_of_output.innerHTML = "";
 	let gps_coord = await getCoord();
-	console.log(gps_coord);
+	
+	calendar_is_executing = false;
 	let arr_to_ret = [];
 	for(datas of dataRet){
 		let data_geolat = Number(datas.pl_geo_lat);
@@ -119,9 +123,8 @@ async function calendar_get_data(instr){
 	calendar_reset_selector();
 	calendar_set_selector(Number(date_str_obj[2]) - 1);	
 	
-	
 }
-const selectioned_color = "w3-green"
+const selectioned_color = "w3-green";
 function calendar_reset_selector(){
 	let dom_valid_class_date = document.getElementsByClassName("date-valid");
 	for(let i of dom_valid_class_date){

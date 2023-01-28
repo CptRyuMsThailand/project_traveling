@@ -45,14 +45,17 @@ async function getCoord(){
 }
 
 function getList(){
-	return new Promise(resolve =>{
+	return new Promise((resolve,reject) =>{
 		let xhttp = new XMLHttpRequest();
 
 		xhttp.onload = function(){
 			let result = JSON.parse(xhttp.response);
 			resolve(result);
 		}
-		xhttp.open("post","./list/get_list.php?kword="+dom_search.value,true);
+		xhttp.onerror = function(){
+			reject(xhttp.responseStatus);
+		}
+		xhttp.open("POST","./list/get_list.php?kword="+dom_search.value,true);
 		xhttp.send();
 
 

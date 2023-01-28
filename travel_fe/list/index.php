@@ -8,6 +8,13 @@ require("./connection/connect.php");
 
 
 ?>
+<style>
+	img{
+		width:200px;
+		height:100px;
+		object-fit: cover;
+	}
+</style>
 
 <div class="w3-container">
 	<div class="w3-container">
@@ -39,13 +46,16 @@ function render_node(dataList,coord){
 	if(dataList.length == 0){
 		dom_list_output.innerText = "ไม่มีรายการที่คุณเลือกไว้";
 	}
-
+	
 
 	for(let i = 0,len = dataList.length;i < len; i++ ){
 		let baseLI = document.createElement("li");
 		let nameNode = document.createElement("h3");
 		nameNode.innerText = dataList[i].ev_name;
 		baseLI.appendChild(nameNode);
+		let image = new Image();
+		image.src = "./images/"+dataList[i].ev_img_list.split(",")[0];
+		baseLI.appendChild(image);
 		let nodeLocal = document.createElement("div");
 		let local_names = dataList[i].lc_name.split(",");
 		nodeLocal.innerText = "ตำบล "+local_names[1] + " อำเภอ " + local_names[0];
