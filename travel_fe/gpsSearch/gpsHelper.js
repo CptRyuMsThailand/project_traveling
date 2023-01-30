@@ -58,6 +58,12 @@ async function retrieveEventFromGpsData(){
 					</div>
 					<div class="w3-col s12 m10">
 						<h3>${data.ev_name}</h3>
+
+						<p><i class="fa fa-calendar-plus-o">${data.ev_date_beg}</i></p>
+						<p><i class="fa fa-calendar-minus-o">${data.ev_date_end}</i></p>
+						
+					</div>
+					<div class="w3-col s12">
 					</div>
 				</div>
 			</li>

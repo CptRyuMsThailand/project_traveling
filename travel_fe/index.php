@@ -13,10 +13,16 @@ require("date_helper.php");
 		<title> Travel Event Recommendation</title>
 	</head>
 	<style>
+		*{
+			/*font-family : myWebFont;*/
+			font-size: 20px;
+		}
 		body{
-			margin:0px; 
+			margin:0px;
+			
 			
 		}
+
 	</style>
 	<body class="w3-content w3-light-grey" style="max-width:1600px;">
 		<div >
