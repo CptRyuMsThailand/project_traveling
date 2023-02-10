@@ -39,114 +39,84 @@ $result2 = $stmt2->get_result()->fetch_all(MYSQLI_ASSOC)[0];
 ?>
 
 <form class="w3-container" method="POST" enctype="multipart/form-data" onsubmit="return testSubmit();">
-	<h2> Edit Event </h2>
-	<input type="hidden" name="form_image_old" value="<?=$result2['ev_img_list'];?>">
-	<label class="w3-label">Name 
-	<input type="text" name="form_name" class="w3-input w3-border" required value="<?=$result2['ev_name']?>"> </label><br>
-	<label class="w3-label">Start Date
-	<input type="date" class="w3-input w3-border" name="form_date_start" id="form_date_start" required value="<?=$result2['ev_date_beg']?>">  </label><br>
-	<label class="w3-label">End Date 
-		<input type="date" class="w3-input w3-border" name="form_date_end" id="form_date_end" required value="<?=$result2['ev_date_end'];?>"> </label><br>
-	<label class="w3-label">Heading
-		<textarea class="w3-input w3-border" name="form_desc_value"><?=$result2["ev_desc"];?></textarea>
-	</label><br>
-
-	<label> Upload Image
-	<input type="text" id="form_image" name="form_image" class="w3-input" value="<?=$result2["ev_img_list"];?>"/>
-	</label><br>
-	<label class="w3-label">
-		สถานที่อ้างอิง
-		<select name="form_place_id" class="w3-input" required>
-			<option value="0"> ไม่ระบุ</option>
-			<?php
-				$stmt1 = $conn->prepare("SELECT pl_id,pl_name FROM table_place ORDER BY pl_name ASC");
-				$stmt1->execute();
-				$result = $stmt1->get_result();
-				if($result){
+	<div class="w3-row-padding">
+		<div class="w3-full w3-padding">
+			<h2> Edit Event </h2>
+		</div>
+		<input type="hidden" name="form_image_old" value="<?=$result2['ev_img_list'];?>">
+		<div class="w3full w3-padding">
+			<label class="w3-label">Name 
+				<input type="text" name="form_name" class="w3-input w3-border" required value="<?=$result2['ev_name']?>"> 
+			</label>
+		</div>
+		
+		<div class="w3-half w3-padding">
+			<label class="w3-label">Start Date
+				<input type="date" class="w3-input w3-border" name="form_date_start" id="form_date_start" required value="<?=$result2['ev_date_beg']?>">  
+			</label>
+		</div>
+		<div class="w3-half w3-padding">
+			<label class="w3-label">End Date 
+				<input type="date" class="w3-input w3-border" name="form_date_end" id="form_date_end" required value="<?=$result2['ev_date_end'];?>"> 
+			</label>
+		</div>
+		<div class="w3-full w3-padding">
+			<label class="w3-label">Data
+				<textarea class="w3-input w3-border" name="form_desc_value"><?=$result2["ev_desc"];?></textarea>
+			</label>
+		</div>
+		<div class="w3-full w3-padding">
+			<label> Thumbnail URL
+				<input type="text" id="form_image" name="form_image" class="w3-input" value="<?=$result2["ev_img_list"];?>"/>
+			</label>
+		</div>
+		<div class="w3-full w3-padding">
+			<label class="w3-label">
+				สถานที่อ้างอิง
+				<select name="form_place_id" class="w3-select w3-border" required>
+					<option value="0"> ไม่ระบุ</option>
+					<?php
+					$stmt1 = $conn->prepare("SELECT pl_id,pl_name FROM table_place ORDER BY pl_name ASC");
+					$stmt1->execute();
+					$result = $stmt1->get_result();
+					
 					while($node = $result->fetch_array(MYSQLI_ASSOC)){
 						?>
-						<option 
-						value="<?=$node['pl_id'];?>"
-						<?php if($node['pl_id'] == $result2['ev_ref_place_id'])echo "selected";?>
-						>
+						<option value="<?=$node['pl_id'];?>" <?php if($node['pl_id'] == $result2['ev_ref_place_id'])echo "selected";?> >
 							<?=$node['pl_name'];?>
 						</option>
 						<?php
-					}	
-				}
+
+					}
 
 
-			?>
-		</select>
-	</label>
-	<br>
-	<button type="submit" name="form_post" class="w3-button w3-input w3-green"> Edit </button>
-</form>
-<div class="w3-container" >
-	<h3>
-		Image Preview
-	</h3>
-	<ul class="w3-ul">
-		<li style="overflow: scroll;" id="preview">
-			
-		</li>
-	</ul>
+					?>
+				</select>
+			</label>
+		</div>
 
-</div>
-<div class="w3-modal w3-black" id="image_preview" onclick="this.style.display = 'none';">
-	<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
-	<div class="w3-modal-content w3-animate-zoom">
-		<img id="image_preview_img" src="" style="width:100%">
+		<div class="w3-full w3-padding">
+		<button type="submit" name="form_post" class="w3-button w3-input w3-green"> Edit </button>
+		</div>
 	</div>
+</form>
 
-
-		
-</div>
 
 
 
 
 <script defer="true">
-window.addEventListener("load",js_img_preview);
-form_image.addEventListener("change",js_img_preview);
-async function js_img_preview(){
-	while(preview.firstChild){
-		preview.removeChild(preview.firstChild);
-	}
-	const curFiles = form_image.files;
-	if(curFiles.length == 0){
-		preview.innerHTML = `No image uploaded yet`;
-	}else{
-		for(let file of curFiles){
-			const imageContainer = new Image();
-			imageContainer.src = URL.createObjectURL(file);
-			imageContainer.height = 100;
-			imageContainer.onclick = function(){
-				
-				image_preview_img.src = this.src;
-				image_preview.style.display = "block";
-
-			}
-			//listItem.style.width = imageContainer.width*1.2+"px";
-			//listItem.style.height = imageContainer.height*1.2+"px";
-			
-
-			preview.appendChild(imageContainer);
-		}
-		
-	}
-
-}
-async function testSubmit(){
-	let s_date = new Date(form_date_start.value);
-	let e_date = new Date(form_date_end.value);
-	if(s_date > e_date){
-		alert("end date must be after start date");
-		return false;
-	}
-	return true;
 	
-}
+	async function testSubmit(){
+		let s_date = new Date(form_date_start.value);
+		let e_date = new Date(form_date_end.value);
+		if(s_date > e_date){
+			alert("end date must be after start date");
+			return false;
+		}
+		return true;
+
+	}
 </script>
 <?php
 

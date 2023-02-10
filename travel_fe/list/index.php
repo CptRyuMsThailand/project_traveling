@@ -85,8 +85,23 @@ function render_node(dataList,coord){
 			`;
 			baseLI.appendChild(node_gmap);
 		}
-		
+		let textReturn = `
+		<div class="w3-row-padding w3-white w3-animate-left">
+			<div class="w3-full w3-center">
+				<h3>${dataList[i].ev_name}</h3>
+			</div>
+			<div class="w3-third">
+				<img src="${dataList[i].ev_img_list.split(",")[0]}"></img>
+			</div>
+			<div class="w3-onethird">
+				<div></div>
+			</div>
 
+		</div>
+
+		`;
+		
+		baseLI.innerHTML = textReturn;
 		dom_list_output.appendChild(baseLI);
 	}
 }

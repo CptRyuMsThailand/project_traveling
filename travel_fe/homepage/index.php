@@ -45,13 +45,20 @@ $result1 = $stmt->get_result();
             $t_edate = $rows["ev_date_end"];
             ?>
             <div class="w3-third w3-content w3-margin-bottom w3-animate-left" >
-              <img src="<?="./images/".$t_img;?>" style="width:100%; height:300px; object-fit: cover;">
-              <div class="w3-container w3-white">
-                <p ><?=$t_name;?></p>
-                <p><?=$t_sdate;?> | <?=$t_edate?></p>
-                <a href="./index.php?pageName=article&articleid=<?=$t_id;?>" class="w3-button w3-green">
-                  รายละเอียด
-                </a>
+              <div class="w3-row-padding">
+                <img src="<?=$t_img;?>" style="width:100%; height:300px; object-fit: cover;">
+                <div class="w3-container w3-white">
+                  <div class="w3-row-padding">
+                    <div class="w3-full w3-padding" ><h3 style="text-overflow : ellipsis ; overflow: hidden; white-space: nowrap;"><?=$t_name;?></h3></div>
+                    <div class="w3-full w3-padding"><?=$t_sdate;?> | <?=$t_edate?></div>
+                    <div class="w3-half w3-padding">
+                      <a href="./index.php?pageName=article&articleid=<?=$t_id;?>" class="w3-input w3-button w3-green w3-round">
+                        <i class="fa fa-info-circle"></i>
+                        อ่านเพิ่ม
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <?php
@@ -64,21 +71,21 @@ $result1 = $stmt->get_result();
     <li>
       <div class="w3-bar w3-white w3-center">
         <a href="./index.php?page_number=<?=$page_num_prev;?>" class="w3-button"> &lt; </a>
-      <?php
+        <?php
         for ($i = 0 ; $i < $clen_padded ; $i++)
         {
-           ?>
-           <a href="./index.php?page_number=<?=$i;?>" class="w3-button <?php if($i == $page_number)echo "w3-green";?>"> <?=$i + 1;?></a>
+         ?>
+         <a href="./index.php?page_number=<?=$i;?>" class="w3-button <?php if($i == $page_number)echo "w3-green";?>"> <?=$i + 1;?></a>
 
-           <?php
-        }
-      ?>
+         <?php
+       }
+       ?>
        <a href="./index.php?page_number=<?=$page_num_next;?>" class="w3-button"> &gt; </a>
-      </div>
-    </li>
-  </ul>
+     </div>
+   </li>
+ </ul>
 </div>
 <?php
 $stmt->close();
 $result1->close();
-	?>
+?>

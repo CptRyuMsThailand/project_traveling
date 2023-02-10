@@ -13,7 +13,7 @@ if(isset($_GET["page"])){
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
 
-	<body>
+	<body class="w3-light-grey">
 		<?php include("./tab/index.php"); ?>
 
 
@@ -23,7 +23,7 @@ if(isset($_GET["page"])){
 		window.addEventListener("load",getUserData);
 		async function getUserData(){
 			let userData = JSON.parse(await web_request("./get_user.php",null));
-			console.log(userData);
+			//console.log(userData);
 		}
 		
 	</script>

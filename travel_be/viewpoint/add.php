@@ -9,11 +9,10 @@ if(isset($_POST["form_post"])){
 	//$image_list_name = implode(",",upload_image($_FILES["form_image"]));
 	//print($image_list_name);
 	
-	$stmt = $conn->prepare("INSERT INTO table_event(ev_name,ev_date_beg,ev_date_end,ev_img_list,ev_desc,ev_origin,ev_ref_place_id) VALUES (?,?,?,?,?,?,?)");
+	$stmt = $conn->prepare("INSERT INTO table_viewpoint(vp_name,vp_lat,vp_lon,vp_img,vp_place_ref) VALUES (?,?,?,?,?)");
 
-	$stmt->bind_param("sssssii",$_POST["form_name"],$_POST["form_date_start"],$_POST["form_date_end"],$_POST["form_image"],$_POST["form_desc_value"],getUserInfo($conn)["us_id"],$_POST["form_place_id"]);
-
-	
+	$value_lat_lon = explode(",",$_POST["form_lat_lon"]);
+	$stmt->bind_param("sddsi",$_POST["form_name"],$value_lat_lon[0],$value_lat_lon[1],$_POST["form_image"],$_POST["form_place_id"]);
 	if(!$stmt->execute()){
 		echo $stmt->error();
 	}else{
@@ -28,24 +27,14 @@ if(isset($_POST["form_post"])){
 <form class="w3-container" method="POST" enctype="multipart/form-data" onsubmit="return testSubmit();">
 	<div class="w3-row-padding">
 		<div class="w3-full w3-padding">
-			<h2> Add Event </h2>
+			<h2> Add Viewpoint </h2>
 		</div>
 		<div class="w3-full w3-padding">
 			<label class="w3-label">Name <input type="text" name="form_name" class="w3-input w3-border" required> </label>
 		</div>
-		<div class="w3-half w3-padding">
-			<label class="w3-label">Start Date
-				<input type="date" class="w3-input w3-border" name="form_date_start" id="form_date_start" required>  
-			</label>
-		</div>
-		<div class="w3-half w3-padding">
-			<label class="w3-label">End Date 
-				<input type="date" class="w3-input w3-border" name="form_date_end" id="form_date_end" required> 
-			</label>
-		</div>
 		<div class="w3-full w3-padding">
-			<label class="w3-label">Data
-				<textarea class="w3-input w3-border" name="form_desc_value"></textarea>
+			<label> Lat Lon (Separate by Comma (,))
+				<input type="text" name="form_lat_lon" class="w3-input w3-border" required>
 			</label>
 		</div>
 		<div class="w3-full w3-padding">
@@ -77,24 +66,12 @@ if(isset($_POST["form_post"])){
 			</label>
 		</div>
 		<div class="w3-full w3-padding">
-			<button type="submit" name="form_post" class="w3-button w3-input w3-green"> POST </button>
+			<button type="submit" name="form_post" class="w3-button w3-input w3-green"> Add Viewpoint </button>
 		</div>
 	</div>
 </form>
 
-<script defer="true">
-	
-	async function testSubmit(){
-		let s_date = new Date(form_date_start.value);
-		let e_date = new Date(form_date_end.value);
-		if(s_date > e_date){
-			alert("end date must be after start date");
-			return false;
-		}
-		return true;
 
-	}
-</script>
 <?php
 
 $conn->close();

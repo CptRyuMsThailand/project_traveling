@@ -84,10 +84,10 @@ async function calendar_get_data(instr){
 	
 		let str_to_ret = `
 	<li>
-		<div class="w3-row w3-light-grey" >
+		<div class="w3-row-padding" >
 			<div class="w3-col s12"><h2>${datas.ev_name}</h2></div>
 			<div class="w3-col s12 m4 w3-responsive">
-				<img src="./images/${datas.ev_img_list.split(",")[0]}" class="w3-image" style="max-width:320px;">
+				<img src="${datas.ev_img_list.split(",")[0]}" class="w3-image" style="max-width:320px;">
 			</div>
 			<div class="w3-col s12 m8">
 				<div class="w3-container">
@@ -122,7 +122,7 @@ async function calendar_get_data(instr){
 	
 	calendar_reset_selector();
 	calendar_set_selector(Number(date_str_obj[2]) - 1);	
-	
+	headList.scrollIntoView();
 }
 const selectioned_color = "w3-green";
 function calendar_reset_selector(){

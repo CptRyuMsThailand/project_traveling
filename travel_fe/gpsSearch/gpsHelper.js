@@ -51,10 +51,10 @@ async function retrieveEventFromGpsData(){
 	let toPrintSum = "";
 	for(let data of datas){
 		let toPrint = `
-			<li class="w3-white">
-				<div class="w3-row-padding">
+			<li class="w3-white w3-animate-left">
+				<div class="w3-row-padding w3-animate-left">
 					<div class="w3-col s12 m2 ">
-						<img src="./images/${data.ev_img_list.split(",")[0]}" style="object-fit:cover; width:100%; height:100px;">
+						<img src="${data.ev_img_list.split(",")[0]}" style="object-fit:cover; width:100%; height:100px;">
 					</div>
 					<div class="w3-col s12 m10">
 						<h3>${data.ev_name}</h3>

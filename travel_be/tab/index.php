@@ -9,6 +9,8 @@ if(!isset($page_id)){
 	<a href="index.php?page=event" class="w3-bar-item w3-button"> <h3>Event</h3> </a>
 	<a href="index.php?page=place" class="w3-bar-item w3-button"> <h3>Place</h3> </a>
 	<a href="index.php?page=files" class="w3-bar-item w3-button"> <h3>Files</h3> </a>
+	<a href="index.php?page=viewpoint" class="w3-bar-item w3-button"> <h3>ViewPoint</h3> </a>
+	
 	
 	<a href="logout.php" class="w3-bar-item w3-button"><h3>Logout</h3></a>
 </div>
@@ -19,12 +21,17 @@ if(!isset($page_id)){
 		case "ADD_EVENT" : require("./add/index.php");break;
 		case "EDIT_EVENT" : require("./edit/index.php");break;
 		case "DELETE_EVENT" : require("./delete/index.php");break;
+
 		case "place" : require("./place/index.php");break;
 		case "ADD_PLACE" : require("./place/add/index.php");break;
 		case "EDIT_PLACE" : require("./place/edit/index.php");break;
 		case "DELETE_PLACE" : require("./place/delete/index.php");break;
+
 		case "files" : require("./fileUpload/index.php");break;
 		case "DELETE_FILE" : require("./fileUpload/delete.php");break;
+
+		case "viewpoint" : require("./viewpoint/index.php");break;
+		case "ADD_VIEWPOINT" : require("./viewpoint/add.php");break;
 	}
 
 ?>

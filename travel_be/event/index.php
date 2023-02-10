@@ -30,6 +30,13 @@ if(!isset($page_id)){
 </div>
 <script defer="true">
 window.addEventListener("load",homeload);
+function getInternalPath(path){
+	if(path.substring(0,9).toLowerCase() == "./images/"){
+		return "./../travel_fe/images/" + path.substring(9);
+	}else{
+		return path;
+	}
+}
 async function homeload(){
 	let pathImage = "./../travel_fe/images/";
 	let rawJSON = await web_request("./event/getDataList.php",null);
@@ -41,7 +48,7 @@ async function homeload(){
 		let image = i.ev_img_list.split(",")[0];
 		element += `
 			<tr>
-				<td> <img class="w3-image" style="height:100px;" src="${pathImage+image}"> </td>
+				<td> <img class="w3-image" style="height:100px;" src="${getInternalPath(image)}"> </td>
 				<td> 
 				${i.ev_name} 
 				</td>
