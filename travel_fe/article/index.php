@@ -11,22 +11,22 @@ $article_id = $_GET["articleid"];
 	
 	<ul class="w3-ul">
 
-		<li><h2 id="dom_header" class="w3-header"></h2></li>
+		<li class="w3-white"><h2 id="dom_header" class="w3-header"></h2></li>
 		<li>
 			<div class="w3-bar w3-white" >
-				<button onclick="article_set_tab(tab_main_article);" class="w3-bar-item w3-button w3-border"> รายละเอียด </button>
-				<button onclick="article_set_tab(tab_view_article);" class="w3-bar-item w3-button w3-border"> จุดชมวิว </button>
+				<button onclick="article_set_tab(tab_main_article,0);" class="w3-bar-item w3-button cpt_tab"> รายละเอียด </button>
+				<button onclick="article_set_tab(tab_view_article,1);" class="w3-bar-item w3-button cpt_tab"> จุดชมวิว </button>
 			</div>
 		</li>
 		<li>
 
 			<ul class="w3-ul w3-bottombar" id="tab_main_article">
 		
-				<li><div id="dom_detail" class="w3-container"></div></li>
+				<li><div id="dom_detail" class="w3-container w3-white"></div></li>
 			</ul>
 			<ul class="w3-ul w3-bottombar" id="tab_view_article">
-				<li> <h2> จุดชมวิว </h2></li>
-				<li><div id="dom_viewpoint" class="w3-container"></div></li>
+				<li class="w3-white"> <h2> จุดชมวิว </h2></li>
+				<li class="w3-white"><div id="dom_viewpoint" class="w3-container"></div></li>
 			</ul>
 		</li>
 	</ul>
@@ -44,14 +44,19 @@ $article_id = $_GET["articleid"];
 <script src="./article/articleHelper.js" defer="true"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
 <script defer>
-function article_set_tab(elem){
+function article_set_tab(elem,ind){
 	article_reset_tab();
 	elem.style.display = "block";
+	let className = document.getElementsByClassName("cpt_tab");
+	className[ind].classList.add("w3-green");
 }
 function article_reset_tab(){
 	tab_view_article.style.display = "none";
 	tab_main_article.style.display = "none";
-	
+	let className = document.getElementsByClassName("cpt_tab");
+	for(let i = 0;i<className.length;i++){
+		className[i].classList.remove("w3-green");
+	}
 }
 
 
@@ -59,7 +64,7 @@ function article_reset_tab(){
 window.addEventListener("load",loading_article);
 async function loading_article(){
 	article_reset_tab();
-	article_set_tab(tab_main_article);
+	article_set_tab(tab_main_article,0);
 	const queryString = window.location.search;
 	const searchParam = new URLSearchParams(queryString);
 	const article = searchParam.get("articleid");

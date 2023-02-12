@@ -51,7 +51,7 @@ $result1 = $stmt->get_result();
                   <div class="w3-row-padding">
                     <div class="w3-full w3-padding" ><h3 style="text-overflow : ellipsis ; overflow: hidden; white-space: nowrap;"><?=$t_name;?></h3></div>
                     <div class="w3-full w3-padding"><?=$t_sdate;?> | <?=$t_edate?></div>
-                    <div class="w3-half w3-padding">
+                    <div class="w3-full w3-padding">
                       <a href="./index.php?pageName=article&articleid=<?=$t_id;?>" class="w3-input w3-button w3-green w3-round">
                         <i class="fa fa-info-circle"></i>
                         อ่านเพิ่ม
