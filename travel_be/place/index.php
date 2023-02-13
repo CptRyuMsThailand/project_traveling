@@ -4,6 +4,9 @@ if(!isset($page_id)){
 }
 ?>
 <div class="w3-container">
+	<div class="w3-container">
+		<h2> Place </h2>
+	</div>
 	<div class="w3-bar" >
 		<a href="./index.php?page=ADD_PLACE" class="w3-bar-item w3-button w3-green w3-border">Add Places</a>
 

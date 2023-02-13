@@ -53,16 +53,25 @@ async function retrieveEventFromGpsData(){
 		let toPrint = `
 			<li class="w3-white w3-animate-left">
 				<div class="w3-row-padding w3-animate-left">
+					<div class="w3-full">
+						<h3>${data.ev_name}</h3>
+					</div>
 					<div class="w3-col s12 m2 ">
 						<img src="${data.ev_img_list.split(",")[0]}" style="object-fit:cover; width:100%; height:100px;">
 					</div>
 					<div class="w3-col s12 m10">
-						<h3>${data.ev_name}</h3>
-
-						<p><i class="fa fa-calendar-plus-o">${data.ev_date_beg}</i></p>
-						<p><i class="fa fa-calendar-minus-o">${data.ev_date_end}</i></p>
+						<div class="w3-row">
+						
+							<div class="w3-half"><p><i class="fa fa-calendar-plus-o"></i>${data.ev_date_beg}</p></div>
+							<div class="w3-half"><p><i class="fa fa-calendar-minus-o"></i>${data.ev_date_end}</p></div>
+							<div class="w3-full"><p><i class="fa fa-location"></i>${data.calc_dist.toFixed(1)} กิโลเมตร</p></div>
+							<a href="./index.php?pageName=article&articleid=${data.ev_id}" class="w3-button w3-green"><span class="fa fa-info"></span> รายละเอียด</a> 
+							<a href="${google_map_ext_url + data_geolat + "," + data_geolon }" class="w3-button w3-green" target="new"><span class="fa fa-map"></span> เปิดใน Google Map</a> 
+						</div>
+						
 						
 					</div>
+
 					<div class="w3-col s12">
 					</div>
 				</div>

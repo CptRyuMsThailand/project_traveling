@@ -10,7 +10,21 @@ if(!isset($FROM_INDEX)){
 	</div>
 </header>
 <div class="w3-container">
+	<div class="w3-half">
+		<select id="dom_dist_select" class="w3-select">
+			<option value="5">5 km </option>
+			<option value="10">10 km </option>
+			<option value="15">15 km </option>
+			<option value="20">20 km </option>
+			<option value="25">25 km </option>
+			<option value="30">30 km </option>
+			<option value="60">60 km </option>
 
+		</select>
+
+	</div>
+	<div class="w3-half">
+		<button onclick="retrieveEventFromGpsData();" class="w3-input w3-button"> Search</button>
 	</div>
 </div>
 <div class="w3-container w3-padding" >

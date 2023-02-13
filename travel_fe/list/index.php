@@ -88,12 +88,15 @@ function render_node(dataList,coord){
 		}
 		*/
 		let strOutput = `
-		<div class="w3-row-padding">
+		<div class="w3-row-padding w3-white">
 			<div class="w3-col s12">
 				<h3>${dataList[i].ev_name}</h3>
 			</div>
-			<div class="w3-col s12 m3">
-				<img src="./images/${dataList[i].ev_img_list.split(",")[0]}">
+			<div class="w3-col s12 m4">
+				<img src="${dataList[i].ev_img_list.split(",")[0]}">
+			</div>
+			<div class="w3-col s12 m8">
+				
 			</div>
 		</div>
 

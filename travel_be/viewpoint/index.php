@@ -68,10 +68,10 @@ async function homeload(){
 				<a href="${streetViewBasePath + i.vp_lat + "," + i.vp_lon}"> Street View </a>
 				</td>
 				<td>
-				<a href="./index.php?page=EDIT_VIEWPOINT&edit_id=${i.ev_id}" class="fa">&#xf040;</a>
+				<a href="./index.php?page=EDIT_VIEWPOINT&edit_id=${i.vp_id}" class="fa">&#xf040;</a>
 				</td>
 				<td>
-				<a href="./index.php?page=DELETE_VIEWPOINT&delete_id=${i.ev_id}">&times;</a>
+				<a href="./index.php?page=DELETE_VIEWPOINT&delete_id=${i.vp_id}" onclick="return confirm('Delete ? ');">&times;</a>
 				</td>
 				
 			</tr>

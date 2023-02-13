@@ -32,6 +32,8 @@ if(!isset($page_id)){
 
 		case "viewpoint" : require("./viewpoint/index.php");break;
 		case "ADD_VIEWPOINT" : require("./viewpoint/add.php");break;
+		case "EDIT_VIEWPOINT" : require("./viewpoint/edit.php");break;
+		case "DELETE_VIEWPOINT" : require("./viewpoint/delete.php");break;
 	}
 
 ?>
