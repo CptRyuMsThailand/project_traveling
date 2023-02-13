@@ -3,16 +3,18 @@ if(!isset($page_id)){
 	header("Location:./../index.php");
 }
 require_once("./connection/connect.php");
+$viewpoint_id = $_GET["vp_id"];
+
 if(isset($_POST["form_post"])){
 	//require("imageUpload.php");
 	//print_r($_FILES["form_image"]);
 	//$image_list_name = implode(",",upload_image($_FILES["form_image"]));
 	//print($image_list_name);
 	
-	$stmt = $conn->prepare("INSERT INTO table_viewpoint(vp_name,vp_lat,vp_lon,vp_img,vp_place_ref) VALUES (?,?,?,?,?)");
+	$stmt = $conn->prepare("UPDATE table_viewpoint SET vp_name = ?,vp_lat = ?,vp_lon = ?,vp_img = ?,vp_place_ref = ? WHERE vp_id=?");
 
 	$value_lat_lon = explode(",",$_POST["form_lat_lon"]);
-	$stmt->bind_param("sddsi",$_POST["form_name"],$value_lat_lon[0],$value_lat_lon[1],$_POST["form_image"],$_POST["form_place_id"]);
+	$stmt->bind_param("sddsi",$_POST["form_name"],$value_lat_lon[0],$value_lat_lon[1],$_POST["form_image"],$_POST["form_place_id"],$viewpoint_id);
 	if(!$stmt->execute()){
 		echo $stmt->error();
 	}else{
@@ -20,6 +22,7 @@ if(isset($_POST["form_post"])){
 	}
 	
 }
+$dataList = $conn->query("SELECT * FROM table_viewpoint ")
 ?>
 <style>
 	
