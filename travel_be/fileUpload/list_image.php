@@ -9,8 +9,8 @@ $stmt2->execute();
 $result2 = $stmt2->get_result();
 
 ?>
-<table class="w3-table">
-	<tr>
+<table class="w3-table w3-striped w3-border w3-white">
+	<tr class="w3-green">
 		<th> ID </th><th> Image </th><th> File Name </th><th> File Path</th><th> Delete </th>
 	</tr>
 <?php

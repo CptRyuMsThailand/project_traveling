@@ -39,7 +39,7 @@ require("./connection/connect.php");
 </div>
 <script src="./list/listHelper.js"></script>
 <script >
-let gmap_baseurl = "https://www.google.com/maps/place/"
+let google_map_ext_url = "https://www.google.com/maps/place/"
 function render_node(dataList,coord){
 
 	dom_list_output.innerText = "";
@@ -50,6 +50,7 @@ function render_node(dataList,coord){
 
 	for(let i = 0,len = dataList.length;i < len; i++ ){
 		let baseLI = document.createElement("li");
+		let data = dataList[i];
 		/*
 		let nameNode = document.createElement("h3");
 		nameNode.innerText = dataList[i].ev_name;
@@ -87,6 +88,38 @@ function render_node(dataList,coord){
 			baseLI.appendChild(node_gmap);
 		}
 		*/
+		let toPrint = `
+			<li class="w3-white w3-animate-left">
+				<div class="w3-row-padding w3-animate-left">
+					<div class="w3-full">
+						<h3>${data.ev_name}</h3>
+					</div>
+					<div class="w3-col s12 m2 ">
+						<img src="${data.ev_img_list.split(",")[0]}" style="object-fit:cover; width:100%; height:100px;">
+					</div>
+					<div class="w3-col s12 m10">
+						<div class="w3-row">
+						
+							<div class="w3-half"><i class="fa fa-calendar-plus-o"></i>${data.ev_date_beg}</div>
+							<div class="w3-half"><i class="fa fa-calendar-minus-o"></i>${data.ev_date_end}</div>
+							
+							<div class="w3-full"><span class="fa fa-graduation-cap"></span> 
+								ตำบล ${data.lc_tumbol} อำเภอ ${data.lc_amphoe} จังหวัด ${data.lc_province}
+							</div>
+							
+							<hr>
+							<a href="./index.php?pageName=article&articleid=${data.ev_id}" class="w3-button w3-input w3-green"><span class="fa fa-info"></span> รายละเอียด</a> 
+							<a href="${google_map_ext_url + data.pl_geo_lat + "," + data.pl_geo_lon }" class="w3-button w3-input w3-green" target="new"><span class="fa fa-map"></span> เปิดใน Google Map</a> 
+						</div>
+						
+						
+					</div>
+
+					<div class="w3-col s12">
+					</div>
+				</div>
+			</li>
+		`;
 		let strOutput = `
 		<div class="w3-row-padding w3-white">
 			<div class="w3-col s12">
@@ -101,7 +134,7 @@ function render_node(dataList,coord){
 		</div>
 
 		`;
-		baseLI.innerHTML = strOutput;
+		baseLI.innerHTML = toPrint;
 		dom_list_output.appendChild(baseLI);
 	}
 }

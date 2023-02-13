@@ -72,7 +72,7 @@ $result2 = $stmt2->get_result()->fetch_all(MYSQLI_ASSOC)[0];
 		</div>
 		<div class="w3-full w3-padding">
 			<label class="w3-label">
-				สถานที่อ้างอิง
+				Referenced Places
 				<select name="form_place_id" class="w3-select w3-border" required>
 					<option value="0"> ไม่ระบุ</option>
 					<?php

@@ -27,19 +27,21 @@ if(isset($_POST["form_post"])){
 	<label class="w3-label">Name <input type="text" name="form_name" class="w3-input w3-border" required> </label><br>
 	<label class="w3-label">LatLon <input type="text" name="form_geolatlon" class="w3-input w3-border" required></label><br>
 	<label class="w3-label">
-		Amphoe Tumbol
+		Local Authority
 		<select name="form_amphoe" class="w3-input w3-border">
 			<option value="0"> ไม่ระบุ</option>
 			<?php
 
-				$stmt2 = $conn->prepare("SELECT * FROM table_local ORDER BY lc_name ASC");
+				$stmt2 = $conn->prepare("SELECT * FROM table_local ORDER BY lc_province ASC,lc_amphoe ASC,lc_tumbol ASC");
 				$stmt2->execute();
 				$result2 = $stmt2->get_result();
 				if($result2){
 					while($node = $result2->fetch_array(MYSQLI_ASSOC)){
 						$node_id = $node["lc_id"];
-						$node_name = $node["lc_name"];
-						echo "<option value=\"$node_id\">$node_name</option>";
+						$node_tumbol = $node["lc_tumbol"];
+						$node_amphoe = $node["lc_amphoe"];
+						$node_province = $node["lc_province"];
+						echo "<option value=\"$node_id\">ตำบล $node_tumbol อำเภอ $node_amphoe จังหวัด $node_province</option>";
 					}
 				}
 
@@ -51,7 +53,7 @@ if(isset($_POST["form_post"])){
 
 
 	</label><br>
-	<button type="submit" name="form_post" class="w3-button w3-input w3-green"> POST </button>
+	<button type="submit" name="form_post" class="w3-button w3-input w3-green"> Add </button>
 </form>
 
 

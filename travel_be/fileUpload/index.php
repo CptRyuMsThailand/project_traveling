@@ -19,7 +19,7 @@ $result1->close();
 ?>
 
 <div class="w3-container">
-	
+	<h2> File Upload </h2>
 	<div class="w3-bar w3-black">
 		
 		<button onclick="select_image_tab();" class="w3-button w3-bar-item"> Image </button>
@@ -29,17 +29,19 @@ $result1->close();
 
 	</div>
 	<div class="w3-container">
-		<button onclick="dom_imageUpload.style.display='block';" class="w3-button w3-green"> + Upload Images </button>
-		<button onclick="dom_videoUpload.style.display='block';" class="w3-button w3-green"> + Upload Videos </button>
+		
+		
 	</div>
 
 	<div class="w3-container" id="dom_image_tab">
+		<button onclick="dom_imageUpload.style.display='block';" class="w3-button w3-green"> + Upload Images </button>
 		<?php
 		include("./fileUpload/list_image.php");
 		?>
 	</div>
 
 	<div class="w3-container" id="dom_video_tab">
+		<button onclick="dom_videoUpload.style.display='block';" class="w3-button w3-green"> + Upload Videos </button>
 		<?php
 		include("./fileUpload/list_video.php");
 		?>

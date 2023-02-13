@@ -11,9 +11,9 @@ if(!isset($page_id)){
 		<a href="./index.php?page=ADD_PLACE" class="w3-bar-item w3-button w3-green w3-border">Add Places</a>
 
 	</div>
-	<table class="w3-table">
+	<table class="w3-table w3-striped w3-border">
 		<thead>
-			<tr>
+			<tr class="w3-green">
 				<th> ID </th>
 				<th> Name </th>
 				<th> Link </th>
@@ -21,7 +21,7 @@ if(!isset($page_id)){
 				<th> Delete </th>
 			</tr>
 		</thead>
-		<tbody  id="table_main">
+		<tbody class="w3-white" id="table_main">
 			
 		</tbody>
 

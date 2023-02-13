@@ -81,7 +81,7 @@ async function calendar_get_data(instr){
 		let user_geolat = (gps_coord ? gps_coord.latitude : data_geolat);
 		let user_geolon = (gps_coord ? gps_coord.longitude : data_geolon);
 		let geodist = haversine(data_geolat,data_geolon,user_geolat,user_geolon);
-	
+		
 		let str_to_ret = `
 	<li>
 		<div class="w3-row-padding" >
@@ -100,7 +100,7 @@ async function calendar_get_data(instr){
 							<span class="fa fa-map-marker"></span> ${datas.pl_name} ${gps_coord ? geodist.toFixed(3) + "km" : ""}
 						</li>
 						<li>
-							<span class="fa fa-graduation-cap"></span> ตำบล ${datas.lc_name.split(",")[1]} อำเภอ ${datas.lc_name.split(",")[0]}
+							<span class="fa fa-graduation-cap"></span> ตำบล ${datas.lc_tumbol} อำเภอ ${datas.lc_amphoe} จังหวัด ${datas.lc_province}
 						</li>
 						<li>
 							<a href="./index.php?pageName=article&articleid=${datas.ev_id}" class="w3-button w3-green"><span class="fa fa-info"></span> รายละเอียด</a> 

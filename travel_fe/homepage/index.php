@@ -11,11 +11,12 @@ $clen = $conn->query("SELECT Count(*) As CountRes FROM table_event INNER JOIN ta
 $clen_padded = ceil($clen / $show_count);
 $page_num_prev = max($page_number - 1,0);
 $page_num_next = min($page_number + 1,$clen_padded - 1);
-$stmt = $conn->prepare("SELECT * FROM table_event  INNER JOIN table_place ON pl_id = ev_ref_place_id WHERE DATE(ev_date_beg) >= NOW() ORDER BY ev_date_beg ASC LIMIT ?,?");
+$stmt = $conn->prepare("SELECT * FROM table_event  INNER JOIN table_place ON pl_id = ev_ref_place_id INNER JOIN table_local ON lc_id = pl_amphoe WHERE DATE(ev_date_beg) >= NOW() OR NOW() BETWEEN DATE(ev_date_beg) AND DATE(ev_date_end) ORDER BY ev_date_beg ASC LIMIT ?,?");
 $real_page_number = $page_number * $show_count;
 $stmt->bind_param("ii",$real_page_number,$show_count);
 $stmt->execute();
 $result1 = $stmt->get_result();
+$google_map_ext_url = "https://www.google.com/maps/place/";
 ?>
 <style type="text/css">
 
@@ -43,6 +44,8 @@ $result1 = $stmt->get_result();
             $t_img = explode(",",$rows["ev_img_list"])[0];
             $t_sdate = $rows["ev_date_beg"];
             $t_edate = $rows["ev_date_end"];
+            $pl_geo_lat = $rows["pl_geo_lat"];
+            $pl_geo_lon = $rows["pl_geo_lon"];
             ?>
             <div class="w3-third w3-content w3-margin-bottom w3-animate-left" >
               <div class="w3-row-padding">
@@ -54,9 +57,16 @@ $result1 = $stmt->get_result();
                     <div class="w3-full w3-padding">
                       <a href="./index.php?pageName=article&articleid=<?=$t_id;?>" class="w3-input w3-button w3-green w3-round">
                         <i class="fa fa-info-circle"></i>
-                        อ่านเพิ่ม
+                        รายละเอียด
                       </a>
                     </div>
+                    <div class="w3-full w3-padding">
+                      <a href="<?=$google_map_ext_url.$pl_geo_lat.",".$pl_geo_lon?>" class="w3-input w3-button w3-green w3-round" target="new">
+                        <i class="fa fa-map-marker"></i>
+                        เปิดในกูเกิ้ลแมพ
+                      </a>
+                    </div>
+                    
                   </div>
                 </div>
               </div>

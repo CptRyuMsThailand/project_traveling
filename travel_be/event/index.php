@@ -8,12 +8,12 @@ if(!isset($page_id)){
 		<h2> Event </h2>
 	</div>
 	<div class="w3-bar" >
-		<a href="./index.php?page=ADD_EVENT" class="w3-bar-item w3-button w3-green w3-border">Add Posts</a>
+		<a href="./index.php?page=ADD_EVENT" class="w3-bar-item w3-button w3-green w3-border">Add Events</a>
 
 	</div>
-	<table class="w3-table">
+	<table class="w3-table w3-border w3-striped w3-white">
 		<thead>
-			<tr>
+			<tr class="w3-green">
 				<th> Image </th>
 				<th> Name </th>
 				<th> Start Date </th>

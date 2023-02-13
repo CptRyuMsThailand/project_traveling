@@ -27,9 +27,9 @@ if(isset($_POST["deleter"])){
 <form method="POST">
 <div class="w3-container">
 	
-	Want to delete ? 
-	<button type="submit" name="deleter" class="w3-button"> Yes </button>
-	<a href="./index.php?page=place" class="w3-button">No</a>
+	<h3>Want to delete ? </h3>
+	<button type="submit" name="deleter" class="w3-button w3-red"> Yes </button>
+	<a href="./index.php?page=place" class="w3-button w3-black">No</a>
 
 </div>
 </form>

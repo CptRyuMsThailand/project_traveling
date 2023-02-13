@@ -16,6 +16,8 @@ $article_id = $_GET["articleid"];
 			<div class="w3-bar w3-white" >
 				<button onclick="article_set_tab(tab_main_article,0);" class="w3-bar-item w3-button cpt_tab"> รายละเอียด </button>
 				<button onclick="article_set_tab(tab_view_article,1);" class="w3-bar-item w3-button cpt_tab"> จุดชมวิว </button>
+				<button onclick="article_set_tab(tab_view_location,2);" class="w3-bar-item w3-button cpt_tab"> สถานที่ </button>
+				
 			</div>
 		</li>
 		<li>
@@ -27,6 +29,15 @@ $article_id = $_GET["articleid"];
 			<ul class="w3-ul w3-bottombar" id="tab_view_article">
 				<li class="w3-white"> <h2> จุดชมวิว </h2></li>
 				<li class="w3-white"><div id="dom_viewpoint" class="w3-container"></div></li>
+			</ul>
+			<ul class="w3-ul w3-bottombar" id="tab_view_location">
+				<li class="w3-white"> <h2> ข้อมูลเส้นหาง</h2></li>
+				<li class="w3-white"><div  class="w3-container">
+					<?php
+					include("./article/articleCredit.php");
+					?>
+
+				</div></li>
 			</ul>
 		</li>
 	</ul>
@@ -53,6 +64,8 @@ function article_set_tab(elem,ind){
 function article_reset_tab(){
 	tab_view_article.style.display = "none";
 	tab_main_article.style.display = "none";
+	tab_view_location.style.display = "none";
+	
 	let className = document.getElementsByClassName("cpt_tab");
 	for(let i = 0;i<className.length;i++){
 		className[i].classList.remove("w3-green");

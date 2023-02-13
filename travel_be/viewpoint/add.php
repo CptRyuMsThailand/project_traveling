@@ -45,7 +45,7 @@ if(isset($_POST["form_post"])){
 		</div>
 		<div class="w3-full w3-padding">
 			<label class="w3-label">
-				สถานที่อ้างอิง
+				Local Authority
 				<select name="form_place_id" class="w3-select w3-border">
 					<option value="0">ไม่ระบุ</option>
 					<?php

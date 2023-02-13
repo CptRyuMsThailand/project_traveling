@@ -5,6 +5,7 @@ let gps_options = {
 	maximumAge : 0
 
 };
+let google_map_ext_url = "https://www.google.com/maps/place/"
 function search_with_gps_data(lat,lon,dist_limit){
 	return new Promise((resolve,reject)=>{
 		let xhttp = new XMLHttpRequest();		
@@ -62,11 +63,16 @@ async function retrieveEventFromGpsData(){
 					<div class="w3-col s12 m10">
 						<div class="w3-row">
 						
-							<div class="w3-half"><p><i class="fa fa-calendar-plus-o"></i>${data.ev_date_beg}</p></div>
-							<div class="w3-half"><p><i class="fa fa-calendar-minus-o"></i>${data.ev_date_end}</p></div>
-							<div class="w3-full"><p><i class="fa fa-location"></i>${data.calc_dist.toFixed(1)} กิโลเมตร</p></div>
-							<a href="./index.php?pageName=article&articleid=${data.ev_id}" class="w3-button w3-green"><span class="fa fa-info"></span> รายละเอียด</a> 
-							<a href="${google_map_ext_url + data_geolat + "," + data_geolon }" class="w3-button w3-green" target="new"><span class="fa fa-map"></span> เปิดใน Google Map</a> 
+							<div class="w3-half"><i class="fa fa-calendar-plus-o"></i>${data.ev_date_beg}</div>
+							<div class="w3-half"><i class="fa fa-calendar-minus-o"></i>${data.ev_date_end}</div>
+							<div class="w3-full"><i class="fa fa-location"></i>${data.calc_dist.toFixed(1)} กิโลเมตร</div>
+							<div class="w3-full"><span class="fa fa-graduation-cap"></span> 
+								ตำบล ${data.lc_tumbol} อำเภอ ${data.lc_amphoe} จังหวัด ${data.lc_province}
+							</div>
+							
+							<hr>
+							<a href="./index.php?pageName=article&articleid=${data.ev_id}" class="w3-button w3-input w3-green"><span class="fa fa-info"></span> รายละเอียด</a> 
+							<a href="${google_map_ext_url + data.pl_geo_lat + "," + data.pl_geo_lon }" class="w3-button w3-input w3-green" target="new"><span class="fa fa-map"></span> เปิดใน Google Map</a> 
 						</div>
 						
 						

@@ -24,7 +24,7 @@ if(!isset($FROM_INDEX)){
 
 	</div>
 	<div class="w3-half">
-		<button onclick="retrieveEventFromGpsData();" class="w3-input w3-button"> Search</button>
+		<button onclick="retrieveEventFromGpsData();" class="w3-input w3-button w3-green"> Search</button>
 	</div>
 </div>
 <div class="w3-container w3-padding" >

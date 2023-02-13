@@ -4,13 +4,14 @@ if(!isset($page_id)){
 }
 ?>
 <div class="w3-container">
+	<h2> Viewpoint </h2>
 	<div class="w3-bar" >
 		<a href="./index.php?page=ADD_VIEWPOINT" class="w3-bar-item w3-button w3-green w3-border">Add Viewpoint</a>
 
 	</div>
-	<table class="w3-table">
+	<table class="w3-table w3-border w3-round w3-striped">
 		<thead>
-			<tr>
+			<tr class="w3-border w3-round w3-green">
 				<th> Viewpoint Image </th>
 				<th> Viewpoint Name </th>
 				<th> Viewpoint Of Event </th>
@@ -21,7 +22,7 @@ if(!isset($page_id)){
 				<th> Delete </th>
 			</tr>
 		</thead>
-		<tbody  id="table_main">
+		<tbody class="w3-white" id="table_main">
 			
 		</tbody>
 
@@ -51,7 +52,7 @@ async function homeload(){
 		let image = i.vp_img.split(",")[0];
 		element += `
 			<tr>
-				<td> <img class="w3-image" style="height:100px;width:100px;object-fit: cover;" src="${getInternalPath(image)}"> </td>
+				<td class="w3-border-left-right"> <img class="w3-image" style="height:100px;width:100px;object-fit: cover;" src="${getInternalPath(image)}"> </td>
 				<td> 
 				${i.vp_name} 
 				</td>
