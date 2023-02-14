@@ -100,7 +100,7 @@ async function calendar_get_data(instr){
 							<span class="fa fa-map-marker"></span> ${datas.pl_name} ${gps_coord ? geodist.toFixed(3) + "km" : ""}
 						</li>
 						<li>
-							<span class="fa fa-graduation-cap"></span> ตำบล ${datas.lc_tumbol} อำเภอ ${datas.lc_amphoe} จังหวัด ${datas.lc_province}
+							<span class="fa fa-graduation-cap"></span> ${namedAuthorized(datas.lc_province,datas.lc_amphoe,datas.lc_tumbol)}
 						</li>
 						<li>
 							<a href="./index.php?pageName=article&articleid=${datas.ev_id}" class="w3-button w3-green"><span class="fa fa-info"></span> รายละเอียด</a> 

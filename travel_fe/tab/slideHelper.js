@@ -37,3 +37,15 @@ function showSlideshow(baseId,position){
 	imageList[position].style.display = "block";
 	base.getElementsByClassName("numberShow")[0].innerText = `${position + 1} / ${maxImage}`;
 }
+function namedAuthorized(province,amphoe,tumbol){
+	let arr = [
+		" ตำบล"," อำเภอ",
+		" แขวง"," เขต"
+		];
+	if(province == "กรุงเทพมหานคร"){
+		return arr[2] + tumbol + arr[3] + amphoe + " กรุงเทพมหานคร";
+	}
+	return arr[0] + tumbol + arr[1] + amphoe + " จังหวัด " + province;
+
+
+}

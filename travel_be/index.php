@@ -4,7 +4,17 @@ $page_id = "event";
 if(isset($_GET["page"])){
 	$page_id = $_GET["page"];
 }
+function namedAuthorized($province,$amphoe,$tumbol){
+	$arr = [
+		" ตำบล "," อำเภอ ",
+		" แขวง "," เขต "
+		];
+	if($province == "กรุงเทพมหานคร"){
+		return $arr[2] . $tumbol . $arr[3] . $amphoe . " กรุงเทพมหานคร";
+	}
+	return $arr[0] . $tumbol . $arr[1] . $amphoe . " จังหวัด " . $province;
 
+}
 
 ?>
 <html>

@@ -13,7 +13,7 @@ $google_map_ext_url = "https://www.google.com/maps/place/";
 
 <div class="w3-container">
 	<p>สถานที่ : <?=$result["pl_name"]?></p>
-	<p> เขต : ตำบล<?= $result["lc_tumbol"]?> อำเภอ<?= $result["lc_amphoe"]?> จังหวัด<?=$result["lc_province"]?> </p>
+	<p> เขต : <?= namedAuthorized($result["lc_province"],$result["lc_amphoe"],$result["lc_tumbol"]); ?></p>
 	<p> พิกัด : <?= $result["pl_geo_lat"]?> , <?= $result["pl_geo_lon"]?></p>
 	<a href="<?=$google_map_ext_url.$result["pl_geo_lat"]." , ".$result["pl_geo_lon"]?>" class="w3-button w3-input w3-green" target="new">เปิดใน Google Maps</a>
 

@@ -17,9 +17,9 @@ if(isset($_POST["form_post"])){
 	if(!$stmt->execute()){
 		echo $stmt->error();
 	}else{
-		header("Location:./index.php");	
+		header("Location:./index.php");
+		exit;
 	}
-	
 }
 ?>
 <style>

@@ -61,10 +61,13 @@ $dataToEdit = $result->fetch_all(MYSQLI_ASSOC)[0];
 						$node_tumbol = $node["lc_tumbol"];
 						$node_amphoe = $node["lc_amphoe"];
 						$node_province = $node["lc_province"];
+						# BTS วัดพระศรีมหาธาตุ (N17)
+						# 13.875349495477234, 100.59680479463012
+						$named_auth = namedAuthorized($node_province,$node_amphoe,$node_tumbol);
 						if($node_id == $dataToEdit["pl_amphoe"]){
-							echo "<option value=\"$node_id\" selected>ตำบล $node_tumbol อำเภอ $node_amphoe จังหวัด $node_province</option>";	
+							echo "<option value=\"$node_id\" selected>$named_auth</option>";	
 						}else{
-							echo "<option value=\"$node_id\">ตำบล $node_tumbol อำเภอ $node_amphoe จังหวัด $node_province</option>";	
+							echo "<option value=\"$node_id\">$named_auth</option>";	
 						}
 						
 					}

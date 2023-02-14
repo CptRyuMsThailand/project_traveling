@@ -18,7 +18,7 @@ if(!isset($FROM_INDEX)){
 			<option value="20">20 km </option>
 			<option value="25">25 km </option>
 			<option value="30">30 km </option>
-			<option value="60">60 km </option>
+			
 
 		</select>
 

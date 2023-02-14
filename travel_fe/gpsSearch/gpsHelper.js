@@ -63,11 +63,11 @@ async function retrieveEventFromGpsData(){
 					<div class="w3-col s12 m10">
 						<div class="w3-row">
 						
-							<div class="w3-half"><i class="fa fa-calendar-plus-o"></i>${data.ev_date_beg}</div>
-							<div class="w3-half"><i class="fa fa-calendar-minus-o"></i>${data.ev_date_end}</div>
+							<div class="w3-half"><i class="fa fa-calendar-plus-o"></i> เริ่ม ${data.ev_date_beg}</div>
+							<div class="w3-half"><i class="fa fa-calendar-minus-o"></i> สิ้นสุด ${data.ev_date_end}</div>
 							<div class="w3-full"><i class="fa fa-location"></i>${data.calc_dist.toFixed(1)} กิโลเมตร</div>
 							<div class="w3-full"><span class="fa fa-graduation-cap"></span> 
-								ตำบล ${data.lc_tumbol} อำเภอ ${data.lc_amphoe} จังหวัด ${data.lc_province}
+								${namedAuthorized(data.lc_province,data.lc_amphoe,data.lc_amphoe)}
 							</div>
 							
 							<hr>

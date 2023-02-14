@@ -2,6 +2,17 @@
 $FROM_INDEX = true;
 require("./connection/connect.php");
 require("date_helper.php");
+function namedAuthorized($province,$amphoe,$tumbol){
+	$arr = [
+		" ตำบล"," อำเภอ",
+		" แขวง"," เขต"
+		];
+	if($province == "กรุงเทพมหานคร"){
+		return $arr[2] . $tumbol . $arr[3] . $amphoe . " กรุงเทพมหานคร";
+	}
+	return $arr[0] . $tumbol . $arr[1] . $amphoe . " จังหวัด " . $province;
+
+}
 ?>
 
 <!doctype html>
