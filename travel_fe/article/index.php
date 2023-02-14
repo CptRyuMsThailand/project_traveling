@@ -31,7 +31,7 @@ $article_id = $_GET["articleid"];
 				<li class="w3-white"><div id="dom_viewpoint" class="w3-container"></div></li>
 			</ul>
 			<ul class="w3-ul w3-bottombar" id="tab_view_location">
-				<li class="w3-white"> <h2> ข้อมูลเส้นหาง</h2></li>
+				<li class="w3-white"> <h2> ข้อมูลเส้นทาง</h2></li>
 				<li class="w3-white"><div  class="w3-container">
 					<?php
 					include("./article/articleCredit.php");

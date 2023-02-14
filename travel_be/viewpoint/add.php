@@ -4,15 +4,20 @@ if(!isset($page_id)){
 }
 require_once("./connection/connect.php");
 if(isset($_POST["form_post"])){
+	$stmt1 = $conn->prepare("SELECT us_id,us_superuser FROM table_user WHERE us_name = ? AND us_pass = ?");
+	$stmt1->bind_param("ss",...getUserAndPass());
+	$stmt1->execute();
+	$result1 = $stmt1->get_result();
+	$user_info = $result1->fetch_all(MYSQLI_ASSOC)[0];
 	//require("imageUpload.php");
 	//print_r($_FILES["form_image"]);
 	//$image_list_name = implode(",",upload_image($_FILES["form_image"]));
 	//print($image_list_name);
 	
-	$stmt = $conn->prepare("INSERT INTO table_viewpoint(vp_name,vp_lat,vp_lon,vp_img,vp_place_ref) VALUES (?,?,?,?,?)");
+	$stmt = $conn->prepare("INSERT INTO table_viewpoint(vp_name,vp_lat,vp_lon,vp_img,vp_place_ref,vp_origin) VALUES (?,?,?,?,?)");
 
 	$value_lat_lon = explode(",",$_POST["form_lat_lon"]);
-	$stmt->bind_param("sddsi",$_POST["form_name"],$value_lat_lon[0],$value_lat_lon[1],$_POST["form_image"],$_POST["form_place_id"]);
+	$stmt->bind_param("sddsi",$_POST["form_name"],$value_lat_lon[0],$value_lat_lon[1],$_POST["form_image"],$_POST["form_place_id"],$user_info["us_id"]);
 	if(!$stmt->execute()){
 		echo $stmt->error();
 	}else{

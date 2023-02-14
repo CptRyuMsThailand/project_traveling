@@ -9,7 +9,7 @@ $result1 = $stmt1->get_result();
  
 $user_info = $result1->fetch_all(MYSQLI_ASSOC)[0];
 //print_r($user_info);
-$stmt2 = $conn->prepare("SELECT table_viewpoint.*,pl_name FROM table_viewpoint LEFT JOIN table_place ON pl_id = vp_place_ref WHERE ? = 1 or pl_origin = ?");
+$stmt2 = $conn->prepare("SELECT table_viewpoint.*,pl_name FROM table_viewpoint LEFT JOIN table_place ON pl_id = vp_place_ref WHERE ? = 1 or vp_origin = ?");
 $stmt2->bind_param("ss",$user_info["us_superuser"],$user_info["us_id"]);
 $stmt2->execute();
 $result2 = $stmt2->get_result();
