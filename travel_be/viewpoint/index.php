@@ -11,19 +11,15 @@ if(!isset($page_id)){
 
 
 $event_id = $_GET["event_id"];
-if(isset($_POST["formSubmitted"])){
-	$rem = $_POST["form_remove"];
-	$len = count($rem);
-	for($i = 0 ; $i < $len ; $i++){
-		if( isset($rem[$i]) ){
-			$del_prepare = $conn->prepare("DELETE FROM table_viewpoint WHERE vp_id = ?");
-			$del_prepare->bind_param("i",$_POST["form_vp_id"][$i]);
-			$del_prepare->execute();
-			$del_prepare->close();
-			header("Location:./index.php?page=viewpoint&event_id=".$event_id);
-			exit;
-		}
-	}
+if(isset($_POST["form_remove"])){
+	$rem = $_POST["form_remove"][0];
+	$del_prepare = $conn->prepare("DELETE FROM table_viewpoint WHERE vp_id = ?");
+	$del_prepare->bind_param("i",$_POST["form_vp_id"][$rem]);
+	$del_prepare->execute();
+	$del_prepare->close();
+	header("Location:./index.php?page=viewpoint&event_id=".$event_id);
+	exit;
+		
 }
 if(isset($_POST["button_ok"])){
 	$f_vp_id = $_POST["form_vp_id"];
@@ -89,6 +85,7 @@ $result_viewpoint = $viewpoint_statement->get_result();
 		</thead>
 		<tbody class="w3-white w3-border" id="table_main">
 			<?php 
+				$i = 0;
 				while($row = $result_viewpoint->fetch_array(MYSQLI_ASSOC)){
 					$vp_name = $row["vp_name"];
 					$vp_img = $row["vp_img"];
@@ -98,9 +95,10 @@ $result_viewpoint = $viewpoint_statement->get_result();
 					<input type="hidden" name="form_vp_id[]" value="<?=$vp_id;?>">
 					<td ><input class="w3-input w3-border" placeholder="Image" name="form_images[]" value="<?=$vp_img;?>"></td>
 					<td ><input class="w3-input w3-border" placeholder="Image" name="form_names[]" value="<?=$vp_name;?>"></td>
-					<td ><button class="w3-button w3-circle w3-red" name="form_remove[]"> X</button> </td>
+					<td ><button class="w3-button w3-circle w3-red" name="form_remove[]" value="<?=$i;?>"> X</button> </td>
 				</tr>
 				<?php
+				$i++;
 				}
 			?>
 		</tbody>

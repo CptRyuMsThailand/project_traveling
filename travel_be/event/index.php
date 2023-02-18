@@ -65,7 +65,7 @@ async function homeload(){
 					<a href="./index.php?page=viewpoint&event_id=${i.ev_id}" class="w3-button w3-xlarge fa fa-image"></a>
 				</td>
 				<td>
-				<a href="./index.php?page=EDIT_EVENT&edit_id=${i.ev_id}" class="fa">&#xf040;</a>
+					<a href="./index.php?page=EDIT_EVENT&edit_id=${i.ev_id}" class="w3-button w3-xlarge fa">&#xf040;</a>
 				</td>
 				<td>
 				<a href="./index.php?page=DELETE_EVENT&delete_id=${i.ev_id}">&times;</a>
