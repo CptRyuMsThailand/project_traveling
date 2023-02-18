@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 14, 2023 at 04:44 PM
+-- Generation Time: Feb 18, 2023 at 09:14 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -206,21 +206,17 @@ INSERT INTO `table_user` (`us_id`, `us_name`, `us_pass`, `us_fname`, `us_superus
 CREATE TABLE `table_viewpoint` (
   `vp_id` bigint(20) NOT NULL,
   `vp_name` text NOT NULL,
-  `vp_lat` double NOT NULL,
-  `vp_lon` double NOT NULL,
   `vp_img` text NOT NULL,
-  `vp_place_ref` int(11) NOT NULL,
-  `vp_origin` int(11) NOT NULL
+  `vp_event_ref` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `table_viewpoint`
 --
 
-INSERT INTO `table_viewpoint` (`vp_id`, `vp_name`, `vp_lat`, `vp_lon`, `vp_img`, `vp_place_ref`, `vp_origin`) VALUES
-(1, 'หอชมเมืองสมุทรปราการ', 13.5984461, 100.5991077, './images/1674638116.jpg', 1, 0),
-(2, 'หน้าศาลากลางจังหวัดสมุทรปราการ', 13.5998147, 100.5969073, './images/1674701609.png', 1, 0),
-(3, 'หน้าวัดหลวงพ่อปาน', 13.5135721, 100.8203237, './images/1674717267.jpg', 4, 0);
+INSERT INTO `table_viewpoint` (`vp_id`, `vp_name`, `vp_img`, `vp_event_ref`) VALUES
+(2, 'gggg', 'kkkkkk', 16),
+(3, '', '', 16);
 
 --
 -- Indexes for dumped tables

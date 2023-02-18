@@ -18,7 +18,7 @@ if(!isset($page_id)){
 				<th> Name </th>
 				<th> Start Date </th>
 				<th> End   Date </th>
-				
+				<th> Gallery </th>
 				<th> Edit </th>
 				<th> Delete </th>
 			</tr>
@@ -61,7 +61,9 @@ async function homeload(){
 				<td>
 				${i.ev_date_end}
 				</td>
-				
+				<td>
+					<a href="./index.php?page=viewpoint&event_id=${i.ev_id}" class="w3-button w3-xlarge fa fa-image"></a>
+				</td>
 				<td>
 				<a href="./index.php?page=EDIT_EVENT&edit_id=${i.ev_id}" class="fa">&#xf040;</a>
 				</td>

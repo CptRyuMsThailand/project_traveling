@@ -9,7 +9,6 @@ if(!isset($page_id)){
 	<a href="index.php?page=event" class="w3-bar-item w3-button"> <h3>Event</h3> </a>
 	<a href="index.php?page=place" class="w3-bar-item w3-button"> <h3>Place</h3> </a>
 	<a href="index.php?page=files" class="w3-bar-item w3-button"> <h3>Files</h3> </a>
-	<a href="index.php?page=viewpoint" class="w3-bar-item w3-button"> <h3>ViewPoint</h3> </a>
 	
 	
 	<a href="logout.php" class="w3-bar-item w3-button"><h3>Logout</h3></a>
