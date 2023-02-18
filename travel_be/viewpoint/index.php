@@ -11,17 +11,8 @@ if(!isset($page_id)){
 
 
 $event_id = $_GET["event_id"];
-if(isset($_POST["form_remove"])){
-	$rem = $_POST["form_remove"][0];
-	$del_prepare = $conn->prepare("DELETE FROM table_viewpoint WHERE vp_id = ?");
-	$del_prepare->bind_param("i",$_POST["form_vp_id"][$rem]);
-	$del_prepare->execute();
-	$del_prepare->close();
-	header("Location:./index.php?page=viewpoint&event_id=".$event_id);
-	exit;
-		
-}
-if(isset($_POST["button_ok"])){
+
+if(isset($_POST["formSubmitted"]) && isset($_POST["form_vp_id"])){
 	$f_vp_id = $_POST["form_vp_id"];
 	$f_vp_img = $_POST["form_images"];
 	$f_vp_name = $_POST["form_names"];
@@ -37,10 +28,22 @@ if(isset($_POST["button_ok"])){
 		$input_id = $f_vp_id[$i];
 		$up_stmt->execute();
 	}
+	$up_stmt->close();	
+}
+if(isset($_POST["button_ok"])){
 	header("Location:./index.php?page=event");
 	exit;
 }
-
+if(isset($_POST["form_remove"])){
+	$rem = $_POST["form_remove"][0];
+	$del_prepare = $conn->prepare("DELETE FROM table_viewpoint WHERE vp_id = ?");
+	$del_prepare->bind_param("i",$_POST["form_vp_id"][$rem]);
+	$del_prepare->execute();
+	$del_prepare->close();
+	header("Location:./index.php?page=viewpoint&event_id=".$event_id);
+	exit;
+		
+}
 
 
 if(isset($_POST["button_add"])){
@@ -66,7 +69,7 @@ $result_viewpoint = $viewpoint_statement->get_result();
 <form method="POST">
 	<input type="hidden" name="formSubmitted">
 <div class="w3-container">
-	<h2> Viewpoint </h2>
+	<h2> Gallery </h2>
 	<div class="w3-container">
 		<div class="w3-row-padding">
 			<div class="w3-col">
@@ -92,23 +95,30 @@ $result_viewpoint = $viewpoint_statement->get_result();
 					$vp_id = $row["vp_id"];
 				?>
 				<tr>
-					<input type="hidden" name="form_vp_id[]" value="<?=$vp_id;?>">
-					<td ><input class="w3-input w3-border" placeholder="Image" name="form_images[]" value="<?=$vp_img;?>"></td>
-					<td ><input class="w3-input w3-border" placeholder="Image" name="form_names[]" value="<?=$vp_name;?>"></td>
+					
+					<td >
+						<input type="hidden" name="form_vp_id[]" value="<?=$vp_id;?>">
+						<input class="w3-input w3-border" placeholder="Image" name="form_images[]" value="<?=$vp_img;?>">
+					</td>
+					<td ><input class="w3-input w3-border" placeholder="Name" name="form_names[]" value="<?=$vp_name;?>"></td>
 					<td ><button class="w3-button w3-circle w3-red" name="form_remove[]" value="<?=$i;?>"> X</button> </td>
 				</tr>
 				<?php
 				$i++;
 				}
 			?>
-		</tbody>
-		<tfoot>
+			</tbody>
+			<tfoot class="w3-white">
 			<tr>
-				<td colspan="2" class="w3-container"><button name="button_add" type="submit" class="w3-xlarge w3-button w3-circle w3-green">+</button>
-				<button class="w3-button w3-green w3-xlarge" name="button_ok"> OK </button>
+				<td colspan="2" class="">
+					<div class="w3-right">
+					<button name="button_add" type="submit" class="w3-xlarge w3-btn w3-circle w3-green">+</button>
+					<button class="w3-btn w3-green w3-xlarge w3-round" name="button_ok"> OK </button>
+				</div>
 				</td>
 			</tr>
 		</tfoot>
+			
 	</table>
 	
 

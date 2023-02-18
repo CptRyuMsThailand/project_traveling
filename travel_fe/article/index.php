@@ -15,8 +15,11 @@ $article_id = $_GET["articleid"];
 		<li>
 			<div class="w3-bar w3-white" >
 				<button onclick="article_set_tab(tab_main_article,0);" class="w3-bar-item w3-button cpt_tab"> รายละเอียด </button>
-				<button onclick="article_set_tab(tab_view_article,1);" class="w3-bar-item w3-button cpt_tab"> จุดชมวิว </button>
-				<button onclick="article_set_tab(tab_view_location,2);" class="w3-bar-item w3-button cpt_tab"> สถานที่ </button>
+				<button onclick="article_set_tab(tab_view_article,1);" class="w3-bar-item w3-button cpt_tab"> รูปภาพ </button>
+				<button onclick="article_set_tab(tab_view_location,2);" class="w3-bar-item w3-button cpt_tab"> การเดินทาง </button>
+				<button onclick="article_set_tab(tab_view_otop,3);" class="w3-bar-item w3-button cpt_tab"> สินค้าโอท็อป </button>
+				<button onclick="article_set_tab(tab_view_location,4);" class="w3-bar-item w3-button cpt_tab"> โรงแรม/ที่พัก </button>
+				
 				
 			</div>
 		</li>
@@ -39,6 +42,16 @@ $article_id = $_GET["articleid"];
 
 				</div></li>
 			</ul>
+			<ul class="w3-ul w3-bottombar" id="tab_view_otop">
+				<li class="w3-white"> <h2> สินค้าโอท็อป</h2></li>
+				<li class="w3-white"><div  class="w3-container">
+					<?php
+					include("./article/articleOtop.php");
+					?>
+
+				</div></li>
+			</ul>
+			
 		</li>
 	</ul>
 	
@@ -65,6 +78,7 @@ function article_reset_tab(){
 	tab_view_article.style.display = "none";
 	tab_main_article.style.display = "none";
 	tab_view_location.style.display = "none";
+	tab_view_otop.style.display = "none";
 	
 	let className = document.getElementsByClassName("cpt_tab");
 	for(let i = 0;i<className.length;i++){
@@ -81,13 +95,13 @@ async function loading_article(){
 	const queryString = window.location.search;
 	const searchParam = new URLSearchParams(queryString);
 	const article = searchParam.get("articleid");
-	console.log(article);
+	//console.log(article);
 	//document.getElementById("iiii").innerText = JSON.stringify(await getArticle(article));
 
 	let returnedData = await getArticle(article);
-	let returnedData2 = await get_viewpoint(returnedData.value[0].ev_ref_place_id);
+	let returnedData2 = await get_viewpoint(article);
 	dom_viewpoint.innerHTML = returnedData2;
-	console.log(returnedData);
+	//console.log(returnedData);
 	//iiii.innerText = returnedData;
 	dom_header.innerText = returnedData.value[0].ev_name;
 	dom_detail.innerHTML = marked.parse(returnedData.value[0].ev_desc);

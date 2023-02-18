@@ -12,15 +12,16 @@ if(!isset($page_id)){
 
 	</div>
 	<table class="w3-table w3-border w3-striped w3-white">
-		<thead>
-			<tr class="w3-green">
+		<thead class="w3-green">
+			<tr >
 				<th> Image </th>
 				<th> Name </th>
 				<th> Start Date </th>
 				<th> End   Date </th>
-				<th> Gallery </th>
-				<th> Edit </th>
-				<th> Delete </th>
+				<th class="w3-center"> Gallery </th>
+				<th class="w3-center"> Otop </th>
+				<th class="w3-center"> Edit </th>
+				<th class="w3-center"> Delete </th>
 			</tr>
 		</thead>
 		<tbody  id="table_main">
@@ -65,10 +66,13 @@ async function homeload(){
 					<a href="./index.php?page=viewpoint&event_id=${i.ev_id}" class="w3-button w3-xlarge fa fa-image"></a>
 				</td>
 				<td>
+					<a href="./index.php?page=otop&event_id=${i.ev_id}" class="w3-button w3-xlarge"><img src="./../travel_fe/images/otop.png" alt="otop" width="64"></a>
+				</td>
+				<td>
 					<a href="./index.php?page=EDIT_EVENT&edit_id=${i.ev_id}" class="w3-button w3-xlarge fa">&#xf040;</a>
 				</td>
 				<td>
-				<a href="./index.php?page=DELETE_EVENT&delete_id=${i.ev_id}">&times;</a>
+				<a href="./index.php?page=DELETE_EVENT&delete_id=${i.ev_id}" class="w3-button w3-xlarge fa fa-times"></a>
 				</td>
 				
 			</tr>

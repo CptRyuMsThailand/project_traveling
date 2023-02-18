@@ -30,9 +30,8 @@ if(!isset($page_id)){
 		case "DELETE_FILE" : require("./fileUpload/delete.php");break;
 
 		case "viewpoint" : require("./viewpoint/index.php");break;
-		case "ADD_VIEWPOINT" : require("./viewpoint/add.php");break;
-		case "EDIT_VIEWPOINT" : require("./viewpoint/edit.php");break;
-		case "DELETE_VIEWPOINT" : require("./viewpoint/delete.php");break;
+		case "otop" : require("./otop/index.php");break;
+		case "hotel" : require("./hotel/index.php");break;
 	}
 
 ?>

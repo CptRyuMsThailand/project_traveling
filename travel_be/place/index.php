@@ -17,6 +17,7 @@ if(!isset($page_id)){
 				<th> ID </th>
 				<th> Name </th>
 				<th> Link </th>
+				<th> Hotel</th>
 				<th> Edit </th>
 				<th> Delete </th>
 			</tr>
@@ -50,6 +51,9 @@ async function homeload(){
 				</td>
 				<td>
 				<a target="new" href="${basePlaceMap + i.pl_geo_lat + "," + i.pl_geo_lon}"> Show in map</a>
+				</td>
+				<td>
+				<a href="./index.php?page=hotel&place_id=${i.pl_id}" class="fa fa-hotel"></a>
 				</td>
 				<td>
 				<a href="./index.php?page=EDIT_PLACE&edit_id=${i.pl_id}" class="fa">&#xf040;</a>
