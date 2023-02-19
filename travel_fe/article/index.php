@@ -34,7 +34,7 @@ $maps_url = $google_map_ext_url . $result["pl_geo_lat"] . "," . $result["pl_geo_
 
 			<ul class="w3-ul w3-bottombar" id="tab_main_article">
 		
-				<li><div id="dom_detail" class="w3-container w3-white"></div></li>
+				<li class="w3-white"><div id="dom_detail" class="w3-container"></div></li>
 			</ul>
 			<ul class="w3-ul w3-bottombar" id="tab_view_article">
 				<li class="w3-white"> <h2> จุดชมวิว </h2></li>
@@ -59,7 +59,7 @@ $maps_url = $google_map_ext_url . $result["pl_geo_lat"] . "," . $result["pl_geo_
 				</div></li>
 			</ul>
 			<ul class="w3-ul w3-bottombar" id="tab_view_hotel">
-				<li class="w3-white"> <h2> </h2></li>
+				<li class="w3-white"> <h2> โรงแรม / ที่พัก </h2></li>
 				<li class="w3-white"><div  class="w3-container" id="dom_hotel">
 					
 

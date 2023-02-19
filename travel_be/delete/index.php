@@ -23,6 +23,11 @@ if(isset($_POST["ch_yes"]) && $is_exists){
 	$stmt = $conn->prepare("DELETE FROM table_viewpoint WHERE ? = vp_event_ref");
 	$stmt->bind_param("i",$_GET["delete_id"]);
 	$stmt->execute();
+	$stmt->close();
+	$stmt = $conn->prepare("DELETE FROM table_otop WHERE ? = otop_event_ref");
+	$stmt->bind_param("i",$_GET["delete_id"]);
+	$stmt->execute();
+	$stmt->close();
 	header("Location:./index.php");
 	exit;
 }

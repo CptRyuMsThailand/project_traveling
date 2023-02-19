@@ -3,7 +3,7 @@ if(!isset($FROM_INDEX)){
   header("Location:./../index.php");
 }
 $page_number = 0;
-$show_count = 3;
+$show_count = 4;
 if(isset($_GET["page_number"])){
   $page_number = $_GET["page_number"];
 }
@@ -46,6 +46,7 @@ $google_map_ext_url = "https://www.google.com/maps/place/";
             $t_edate = $rows["ev_date_end"];
             $pl_geo_lat = $rows["pl_geo_lat"];
             $pl_geo_lon = $rows["pl_geo_lon"];
+            $lc_named  = namedAuthorized($rows["lc_province"],$rows["lc_amphoe"],$rows["lc_tumbol"]);
             ?>
             <div class="w3-half w3-content w3-margin-bottom w3-animate-left" >
               
@@ -62,8 +63,10 @@ $google_map_ext_url = "https://www.google.com/maps/place/";
               <div class="w3-display-container w3-white w3-text">
                     <div class="w3-row-padding">
                        <div class="w3-full w3-padding">
+                        <?=$lc_named;?> <br>
                         เริ่ม <?=$t_sdate;?> <br>
-                        สิ้นสุด<?=$t_edate?>
+                        สิ้นสุด<?=$t_edate?> <br>
+
                       </div>
                       <div class="w3-half w3-padding">
                         <a href="./index.php?pageName=article&articleid=<?=$t_id;?>" class="w3-input w3-button w3-green w3-round">

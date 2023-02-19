@@ -17,10 +17,10 @@ require("tabHelper.php");
     <a href="./index.php?pageName=gpssearch" class="w3-bar-item w3-button w3-padding <?php if($tabSelected == "gpssearch")echo "w3-green";?>">
       <span><i class="fa fa-map-marker"></i> ค้นหากิจกรรมใกล้ๆ คุณ </span>
     </a>
-    <a href="./index.php?pageName=linearlist" class="w3-bar-item w3-button w3-border <?php if($tabSelected == "linearlist")echo "w3-green";?>">
+    <a href="./index.php?pageName=linearlist" class="w3-bar-item w3-button w3-padding <?php if($tabSelected == "linearlist")echo "w3-green";?>">
       <span><i class="fa fa-search"></i> ค้นหากิจกรรม </span>
     </a>
-    <a href="./index.php?pageName=calendar" class="w3-bar-item w3-button w3-border <?php if($tabSelected == "calendar")echo "w3-green";?>">
+    <a href="./index.php?pageName=calendar" class="w3-bar-item w3-button w3-padding <?php if($tabSelected == "calendar")echo "w3-green";?>">
       <span><i class="fa fa-calendar"></i> ปฏิทินกิจกรรม </span>
 
     </a>
@@ -43,7 +43,7 @@ require("tabHelper.php");
   <img src="./favicon.jpg" style="width:50px; height:50px; object-fit:cover;" class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity">
   </div>
   <div class="w3-container w3-center">
-   <h1>แนะนำกิจกรรมท่องเที่ยวเชิงวัฒนธรรม</h1>
+   <h1>เว็บค้นหากิจกรรมท่องเที่ยวเชิงวัฒนธรรม</h1>
  </div>
 </header>
 <div class="w3-container w3-main">

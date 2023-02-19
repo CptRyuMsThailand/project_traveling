@@ -21,7 +21,10 @@ if(isset($_POST["deleter"])){
 	$stmt->bind_param("i",$deleteid);
 	$stmt->execute();
 	$stmt->close();
-	$stmt = $conn->prepare("DELETE FROM ")
+	$stmt = $conn->prepare("DELETE FROM table_hotel WHERE ht_place_ref = ?");
+	$stmt->bind_param("i",$deleteid);
+	$stmt->execute();
+	$stmt->close();
 	header("location:./index.php?page=place");
 }
 ?>
