@@ -8,7 +8,7 @@ require("./../connection/connect.php");
 
 $article_input = $_POST['articleid'];
 
-$stmt = $conn->prepare("SELECT * FROM table_event WHERE ev_id = ? ");
+$stmt = $conn->prepare("SELECT * FROM table_event LEFT JOIN table_place on ev_ref_place_id = pl_id WHERE ev_id = ? ");
 $stmt->bind_param("i",$article_input);
 $stmt->execute();
 $result = $stmt->get_result();

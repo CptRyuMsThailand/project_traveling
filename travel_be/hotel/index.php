@@ -17,18 +17,24 @@ if(isset($_POST["formSubmitted"]) && isset($_POST["form_vp_id"])){
 	$f_vp_img = $_POST["form_images"];
 	$f_vp_name = $_POST["form_names"];
 	$f_vp_url = $_POST["form_url"];
+	$f_vp_lat = $_POST["form_lat"];
+	$f_vp_lon = $_POST["form_lon"];
 	$len = count($f_vp_id);
 	$input_name;
 	$input_image;
 	$input_id;
 	$input_url;
-	$up_stmt = $conn->prepare("UPDATE table_hotel SET ht_name = ? , ht_img = ? , ht_url = ? WHERE ht_id = ?");
-	$up_stmt->bind_param("sssi",$input_name,$input_image,$input_url,$input_id);
+	$input_lat;
+	$input_lon;
+	$up_stmt = $conn->prepare("UPDATE table_hotel SET ht_name = ? , ht_img = ? , ht_url = ?, ht_lat = ? , ht_lon = ? WHERE ht_id = ?");
+	$up_stmt->bind_param("sssddi",$input_name,$input_image,$input_url,$input_lat,$input_lon,$input_id);
 	for($i = 0 ; $i < $len ; $i++){
 		$input_name = $f_vp_name[$i];
 		$input_image = $f_vp_img[$i];
 		$input_id = $f_vp_id[$i];
 		$input_url = $f_vp_url[$i];
+		$input_lat = $f_vp_lat[$i];
+		$input_lon = $f_vp_lon[$i];
 		$up_stmt->execute();
 	}
 	$up_stmt->close();	
@@ -87,6 +93,8 @@ $result_viewpoint = $viewpoint_statement->get_result();
 				<th> Hotel Image</th>
 				<th> Hotel Name </th>
 				<th> Hotel URL </th>
+				<th> Hotel Lat </th>
+				<th> Hotel Lon </th>
 				<th> Remove </th>
 			</tr>
 		</thead>
@@ -98,6 +106,8 @@ $result_viewpoint = $viewpoint_statement->get_result();
 					$hotel_img = $row["ht_img"];
 					$hotel_url = $row["ht_url"];
 					$hotel_id = $row["ht_id"];
+					$hotel_lat = $row["ht_lat"];
+					$hotel_lon = $row["ht_lon"];
 				?>  
 				<tr>
 					
@@ -107,6 +117,9 @@ $result_viewpoint = $viewpoint_statement->get_result();
 					</td>
 					<td ><input class="w3-input w3-border" placeholder="Name" name="form_names[]" value="<?=$hotel_name;?>"></td>
 					<td ><input class="w3-input w3-border" type="url" placeholder="URL" name="form_url[]" value="<?=$hotel_url;?>"></td>
+					<td ><input class="w3-input w3-border" type="text" placeholder="URL" name="form_lat[]" value="<?=$hotel_lat;?>"></td>
+					<td ><input class="w3-input w3-border" type="text" placeholder="URL" name="form_lon[]" value="<?=$hotel_lon;?>"></td>
+					
 					
 					<td ><button class="w3-button w3-circle w3-red" name="form_remove[]" value="<?=$i;?>"> X</button> </td>
 				</tr>

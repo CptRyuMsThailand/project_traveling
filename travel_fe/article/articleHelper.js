@@ -83,8 +83,10 @@ async function requestData(url,params){
 					if(i != 0){
 						sendText += "&";
 					}
-					sendText += encodeURIComponent( i ) + "=" + encodeURIComponent( vars[i] );
+					sendText += encodeURIComponent( vars ) + "=" + encodeURIComponent( params[vars] );
+					i++;
 				}
+				console.log(sendText);
 				xhttp.send(sendText);
 			}
 

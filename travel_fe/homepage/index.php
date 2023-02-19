@@ -28,12 +28,12 @@ $google_map_ext_url = "https://www.google.com/maps/place/";
 </style>
 <div class="">
   <div class="w3-container">
-    <h2>ประกาศกิจกรรม</h2>
+    <h2>หน้าหลัก</h2>
   </div>
   <ul class="w3-ul" id="dom_main_ul">
     <?php if($result1 && $result1->num_rows > 0){?>
       <li class="w3-white">
-        <h3> กิจกรรมที่กำลังจะเริ่ม </h3>
+        <h3> ประเพณีที่น่าสนใจ </h3>
       </li>
       <li>
         <div class="w3-row-padding" >
@@ -47,28 +47,44 @@ $google_map_ext_url = "https://www.google.com/maps/place/";
             $pl_geo_lat = $rows["pl_geo_lat"];
             $pl_geo_lon = $rows["pl_geo_lon"];
             ?>
-            <div class="w3-third w3-content w3-margin-bottom w3-animate-left" >
-              <div class="w3-row-padding">
-                <img src="<?=$t_img;?>" style="width:100%; height:300px; object-fit: cover;">
-                <div class="w3-container w3-white">
-                  <div class="w3-row-padding">
-                    <div class="w3-full w3-padding" ><h3 style="text-overflow : ellipsis ; overflow: hidden; white-space: nowrap;"><?=$t_name;?></h3></div>
-                    <div class="w3-full w3-padding"><?=$t_sdate;?> | <?=$t_edate?></div>
-                    <div class="w3-full w3-padding">
-                      <a href="./index.php?pageName=article&articleid=<?=$t_id;?>" class="w3-input w3-button w3-green w3-round">
-                        <i class="fa fa-info-circle"></i>
-                        รายละเอียด
-                      </a>
-                    </div>
-                    <div class="w3-full w3-padding">
-                      <a href="<?=$google_map_ext_url.$pl_geo_lat.",".$pl_geo_lon?>" class="w3-input w3-button w3-green w3-round" target="new">
-                        <i class="fa fa-map-marker"></i>
-                        เปิดในกูเกิ้ลแมพ
-                      </a>
-                    </div>
-                    
+            <div class="w3-half w3-content w3-margin-bottom w3-animate-left" >
+              
+              <div class="w3-card w3-text-white w3-black">
+              <div class="w3-display-container w3-text-right w3-tooltip">
+                  <img src="<?=$t_img;?>" style="width:100%; height:300px; object-fit: cover;" class="">
+                  <div class="w3-xlarge w3-display-bottomleft w3-padding w3-white" style="white-space:nowrap; text-overflow: ellipsis; overflow:hidden;">
+                    <?=$t_name;?>
+
                   </div>
-                </div>
+                  
+                 
+              </div>
+              <div class="w3-display-container w3-white w3-text">
+                    <div class="w3-row-padding">
+                       <div class="w3-full w3-padding">
+                        เริ่ม <?=$t_sdate;?> <br>
+                        สิ้นสุด<?=$t_edate?>
+                      </div>
+                      <div class="w3-half w3-padding">
+                        <a href="./index.php?pageName=article&articleid=<?=$t_id;?>" class="w3-input w3-button w3-green w3-round">
+                          <i class="fa fa-info-circle"></i>
+                          รายละเอียด
+                        </a>
+                      </div>
+                      <div class="w3-half w3-padding">
+                        <a href="<?=$google_map_ext_url.$pl_geo_lat.",".$pl_geo_lon?>" class="w3-input w3-button w3-green w3-round" target="new">
+                          <i class="fa fa-map-marker"></i>
+                          เปิดในกูเกิ้ลแมพ
+                        </a>
+                      </div>
+
+                    </div>
+                  </div>
+                
+                  
+                  
+              
+                
               </div>
             </div>
             <?php
@@ -85,7 +101,7 @@ $google_map_ext_url = "https://www.google.com/maps/place/";
         for ($i = 0 ; $i < $clen_padded ; $i++)
         {
          ?>
-         <a href="./index.php?page_number=<?=$i;?>" class="w3-button <?php if($i == $page_number)echo "w3-green";?>"> <?=$i + 1;?></a>
+         <a href="./index.php?page_number=<?=$i;?>" class="w3-button <?php if($i == $page_number)echo "w3-dark-grey";?>"> <?=$i + 1;?></a>
 
          <?php
        }

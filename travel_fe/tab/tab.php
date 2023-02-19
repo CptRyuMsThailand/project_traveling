@@ -4,23 +4,24 @@ require("tabHelper.php");
 
 
 ?>
-<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="dom_tab_main">
-  <div class="w3-bar-block">
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="dom_tab_main"><br>
+  
     <a href="JavaScript:void(0)" onclick="w3_close('dom_tab_main');" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
       <i class="fa fa-remove"></i>
     </a>
     <img src="./favicon.jpg" style="width:100px; height:100px; object-fit:cover;" class="w3-round"><br><br>
-    <a href="./index.php?pageName=home" class="w3-bar-item w3-button w3-border-left w3-border-right <?php if($tabSelected == "home")echo "w3-green";?>" >
-      <h4><span><i class="fa fa-home fa-th-large"></i> ประกาศกิจกรรม </span></h4>
+    <div class="w3-bar-block">
+    <a href="./index.php?pageName=home" class="w3-bar-item w3-button w3-padding <?php if($tabSelected == "home")echo "w3-green";?>" >
+      <span><i class="fa fa-home fa-th-large"></i> หน้าหลัก </span>
     </a>
-    <a href="./index.php?pageName=gpssearch" class="w3-bar-item w3-button w3-border <?php if($tabSelected == "gpssearch")echo "w3-green";?>">
-      <h4><span><i class="fa fa-map-marker"></i> ค้นหากิจกรรมใกล้ๆ คุณ </span></h4>
+    <a href="./index.php?pageName=gpssearch" class="w3-bar-item w3-button w3-padding <?php if($tabSelected == "gpssearch")echo "w3-green";?>">
+      <span><i class="fa fa-map-marker"></i> ค้นหากิจกรรมใกล้ๆ คุณ </span>
     </a>
     <a href="./index.php?pageName=linearlist" class="w3-bar-item w3-button w3-border <?php if($tabSelected == "linearlist")echo "w3-green";?>">
-      <h4><span><i class="fa fa-search"></i> ค้นหากิจกรรม </span></h4>
+      <span><i class="fa fa-search"></i> ค้นหากิจกรรม </span>
     </a>
     <a href="./index.php?pageName=calendar" class="w3-bar-item w3-button w3-border <?php if($tabSelected == "calendar")echo "w3-green";?>">
-      <h4><span><i class="fa fa-calendar"></i> ปฏิทินกิจกรรม </span></h4>
+      <span><i class="fa fa-calendar"></i> ปฏิทินกิจกรรม </span>
 
     </a>
   </div>
@@ -45,7 +46,7 @@ require("tabHelper.php");
    <h1>แนะนำกิจกรรมท่องเที่ยวเชิงวัฒนธรรม</h1>
  </div>
 </header>
-<div class="w3-container">
+<div class="w3-container w3-main">
  <?php 
  switch($tabSelected){
   case "home" : require("./homepage/index.php");break;
@@ -57,7 +58,11 @@ require("tabHelper.php");
 
 ?>
 </div>
+<div class="w3-footer">
+  
 
+
+</div>
 </div>
 
 <script>

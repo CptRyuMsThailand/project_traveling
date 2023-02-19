@@ -20,6 +20,8 @@ if(isset($_POST["deleter"])){
 	$stmt = $conn->prepare("DELETE FROM table_place WHERE pl_id = ?");
 	$stmt->bind_param("i",$deleteid);
 	$stmt->execute();
+	$stmt->close();
+	$stmt = $conn->prepare("DELETE FROM ")
 	header("location:./index.php?page=place");
 }
 ?>

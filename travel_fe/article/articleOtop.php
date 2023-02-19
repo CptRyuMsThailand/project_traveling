@@ -12,8 +12,8 @@ function otop_generates($event_id){
 	$stmt->execute();
 	?>
 
-	<table>
-		<tr>
+	<table class="w3-table w3-striped">
+		<tr class="w3-green">
 			<th>รูปภาพ</th>
 			<th>คำอธิบาย</th>
 		</tr>

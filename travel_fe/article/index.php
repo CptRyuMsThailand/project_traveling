@@ -4,7 +4,14 @@ if(
 	!isset($_GET["articleid"])
 )header("Location:./../index.php");
 $article_id = $_GET["articleid"];
+$google_map_ext_url = "https://www.google.com/maps/place/";
 
+$stmt = $conn->prepare("SELECT pl_geo_lat,pl_geo_lon FROM table_place LEFT JOIN table_event ON ev_ref_place_id = pl_id WHERE ? = ev_id");
+$stmt->bind_param("i",$article_id);
+$stmt->execute();
+$result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC)[0];
+$stmt->close();
+$maps_url = $google_map_ext_url . $result["pl_geo_lat"] . "," . $result["pl_geo_lon"];
 
 ?>
 <div id="iiii" class="w3-container">
@@ -14,12 +21,12 @@ $article_id = $_GET["articleid"];
 		<li class="w3-white"><h2 id="dom_header" class="w3-header"></h2></li>
 		<li>
 			<div class="w3-bar w3-white" >
-				<button onclick="article_set_tab(tab_main_article,0);" class="w3-bar-item w3-button cpt_tab"> รายละเอียด </button>
-				<button onclick="article_set_tab(tab_view_article,1);" class="w3-bar-item w3-button cpt_tab"> รูปภาพ </button>
-				<button onclick="article_set_tab(tab_view_location,2);" class="w3-bar-item w3-button cpt_tab"> การเดินทาง </button>
-				<button onclick="article_set_tab(tab_view_otop,3);" class="w3-bar-item w3-button cpt_tab"> สินค้าโอท็อป </button>
-				<button onclick="article_set_tab(tab_view_location,4);" class="w3-bar-item w3-button cpt_tab"> โรงแรม/ที่พัก </button>
-				
+				<button onclick="article_set_tab(0);" class="w3-bar-item w3-button cpt_tab"> รายละเอียด </button>
+				<button onclick="article_set_tab(1);" class="w3-bar-item w3-button cpt_tab"> รูปภาพ </button>
+				<button onclick="article_set_tab(2);" class="w3-bar-item w3-button cpt_tab"> การเดินทาง </button>
+				<button onclick="article_set_tab(3);" class="w3-bar-item w3-button cpt_tab"> สินค้าโอท็อป </button>
+				<button onclick="article_set_tab(4);" class="w3-bar-item w3-button cpt_tab"> โรงแรม/ที่พัก </button>
+				<a href="<?=$maps_url?>" target="new" class="w3-bar-item w3-button w3-yellow"> Maps </a>
 				
 			</div>
 		</li>
@@ -51,6 +58,14 @@ $article_id = $_GET["articleid"];
 
 				</div></li>
 			</ul>
+			<ul class="w3-ul w3-bottombar" id="tab_view_hotel">
+				<li class="w3-white"> <h2> </h2></li>
+				<li class="w3-white"><div  class="w3-container" id="dom_hotel">
+					
+
+				</div></li>
+			</ul>
+			
 			
 		</li>
 	</ul>
@@ -68,17 +83,23 @@ $article_id = $_GET["articleid"];
 <script src="./article/articleHelper.js" defer="true"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
 <script defer>
-function article_set_tab(elem,ind){
+let tabContentDom = [
+	tab_main_article,
+	tab_view_article,
+	tab_view_location,
+	tab_view_otop,
+	tab_view_hotel
+	];
+let article_id = 0;
+function article_set_tab(ind){
 	article_reset_tab();
-	elem.style.display = "block";
+	tabContentDom[ind].style.display = "block";
 	let className = document.getElementsByClassName("cpt_tab");
 	className[ind].classList.add("w3-green");
+	history.replaceState(null,null,"index.php?pageName=article&articleid="+article_id+"&article_tab="+ind);
 }
 function article_reset_tab(){
-	tab_view_article.style.display = "none";
-	tab_main_article.style.display = "none";
-	tab_view_location.style.display = "none";
-	tab_view_otop.style.display = "none";
+	for(let i=0;i<5;i++)tabContentDom[i].style.display = "none";
 	
 	let className = document.getElementsByClassName("cpt_tab");
 	for(let i = 0;i<className.length;i++){
@@ -90,21 +111,26 @@ function article_reset_tab(){
 
 window.addEventListener("load",loading_article);
 async function loading_article(){
-	article_reset_tab();
-	article_set_tab(tab_main_article,0);
 	const queryString = window.location.search;
 	const searchParam = new URLSearchParams(queryString);
-	const article = searchParam.get("articleid");
+	article_id = searchParam.get("articleid");
+	let se_tab = 0;
+	if(searchParam.has("article_tab")){
+		se_tab = Number(searchParam.get("article_tab"));
+	}
+	
+	article_set_tab(se_tab);
 	//console.log(article);
 	//document.getElementById("iiii").innerText = JSON.stringify(await getArticle(article));
 
-	let returnedData = await getArticle(article);
-	let returnedData2 = await get_viewpoint(article);
+	let [returnedData,returnedData2] = await Promise.all([getArticle(article_id),get_viewpoint(article_id)]);
+	let returnedData3 = await requestData("./article/articleHotel.php",{place_id:returnedData.value[0].pl_id});
 	dom_viewpoint.innerHTML = returnedData2;
 	//console.log(returnedData);
 	//iiii.innerText = returnedData;
 	dom_header.innerText = returnedData.value[0].ev_name;
 	dom_detail.innerHTML = marked.parse(returnedData.value[0].ev_desc);
+	dom_hotel.innerHTML = returnedData3;
 	if(returnedData.status == 404){
 		modal_error.style.display = "block";
 	}

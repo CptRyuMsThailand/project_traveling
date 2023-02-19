@@ -31,7 +31,7 @@ function viewpoint_generates($event_id){
 		<?php
 	}
 	?>
-	</div>
+	</table>
 	<?php
 }
 viewpoint_generates($_POST["event_id"]);
