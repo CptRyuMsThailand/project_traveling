@@ -23,7 +23,7 @@ $maps_url = $google_map_ext_url . $result["pl_geo_lat"] . "," . $result["pl_geo_
 			<div class="w3-bar w3-white" >
 				<button onclick="article_set_tab(0);" class="w3-bar-item w3-button cpt_tab"> รายละเอียด </button>
 				<button onclick="article_set_tab(1);" class="w3-bar-item w3-button cpt_tab"> รูปภาพ </button>
-				<button onclick="article_set_tab(2);" class="w3-bar-item w3-button cpt_tab"> การเดินทาง </button>
+				<button onclick="article_set_tab(2);" class="w3-bar-item w3-button cpt_tab"> ข้อมูลการจัดงาน </button>
 				<button onclick="article_set_tab(3);" class="w3-bar-item w3-button cpt_tab"> สินค้าโอท็อป </button>
 				<button onclick="article_set_tab(4);" class="w3-bar-item w3-button cpt_tab"> โรงแรม/ที่พัก </button>
 				<a href="<?=$maps_url?>" target="new" class="w3-bar-item w3-button w3-yellow"> Maps </a>
@@ -37,11 +37,11 @@ $maps_url = $google_map_ext_url . $result["pl_geo_lat"] . "," . $result["pl_geo_
 				<li class="w3-white"><div id="dom_detail" class="w3-container"></div></li>
 			</ul>
 			<ul class="w3-ul w3-bottombar" id="tab_view_article">
-				<li class="w3-white"> <h2> จุดชมวิว </h2></li>
+				<li class="w3-white"> <h2> ภาพบรรยากาศ </h2></li>
 				<li class="w3-white"><div id="dom_viewpoint" class="w3-container"></div></li>
 			</ul>
 			<ul class="w3-ul w3-bottombar" id="tab_view_location">
-				<li class="w3-white"> <h2> ข้อมูลเส้นทาง</h2></li>
+				<li class="w3-white"> <h2> ข้อมูลการจัดงาน</h2></li>
 				<li class="w3-white"><div  class="w3-container">
 					<?php
 					include("./article/articleCredit.php");

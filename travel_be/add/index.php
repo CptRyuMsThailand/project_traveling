@@ -82,8 +82,8 @@ if(isset($_POST["form_post"])){
 		<div class="w3-full w3-padding">
 			<label class="w3-label">Name <input type="text" name="form_name" class="w3-input w3-border" required> </label>
 		</div>
-		<div class="w3-half w3-padding">
-			<div class="w3-container w3-grey">
+		<div class="w3-half w3-padding ">
+			<div class="w3-container w3-grey w3-padding">
 			<p> Date Begin </p>
 			<label class="w3-label"> Day
 				<input type="number" name="form_day_beg" class="w3-input w3-border">
@@ -94,7 +94,7 @@ if(isset($_POST["form_post"])){
 			</div>
 		</div>
 		<div class="w3-half w3-padding">
-			<div class="w3-container w3-grey">
+			<div class="w3-container w3-grey w3-padding">
 			<p> Date End </p>
 			<label class="w3-label"> Day
 				<input type="number" name="form_day_end" class="w3-input w3-border">

@@ -102,7 +102,7 @@ $result2 = $stmt2->get_result()->fetch_all(MYSQLI_ASSOC)[0];
 		</div>
 		
 		<div class="w3-half w3-padding">
-			<div class="w3-container w3-grey">
+			<div class="w3-container w3-grey w3-padding">
 			<p> Date Begin </p>
 			<label class="w3-label"> Day
 				<input type="number" name="form_day_beg" class="w3-input w3-border" required value="<?=$result2["ev_day_beg"]?>">
@@ -113,7 +113,7 @@ $result2 = $stmt2->get_result()->fetch_all(MYSQLI_ASSOC)[0];
 			</div>
 		</div>
 		<div class="w3-half w3-padding">
-			<div class="w3-container w3-grey">
+			<div class="w3-container w3-grey w3-padding">
 			<p> Date End </p>
 			<label class="w3-label"> Day
 				<input type="number" name="form_day_end" class="w3-input w3-border" required value="<?=$result2["ev_day_end"]?>">

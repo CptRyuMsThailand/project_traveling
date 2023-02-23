@@ -64,8 +64,8 @@ $google_map_ext_url = "https://www.google.com/maps/place/";
                     <div class="w3-row-padding">
                        <div class="w3-full w3-padding">
                         <?=$lc_named;?> <br>
-                        เริ่ม <?=$t_sdate;?> <br>
-                        สิ้นสุด<?=$t_edate?> <br>
+                        เริ่ม <?=dateThai($t_sdate);?> <br>
+                        สิ้นสุด <?=dateThai($t_edate);?> <br>
 
                       </div>
                       <div class="w3-half w3-padding">

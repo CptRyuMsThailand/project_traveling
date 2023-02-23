@@ -1,7 +1,6 @@
 <?php
-if(!isset($FROM_INDEX)){
-	header("Location:./../index.php");
-}
+include "./../connection/connect.php";
+include "./../date_helper.php";
 function date_iterate_month($ymd){
 	$dobj = new DateTime($ymd);
 	$y = intval($dobj->format("Y"));
@@ -83,13 +82,13 @@ $result_moon_year = $res_query->fetch_array(MYSQLI_ASSOC);
 				</tr>
 				<?php
 				$wd_count = 0;
-				$sql = "SELECT ev_id FROM table_event WHERE ? BETWEEN ev_date_beg AND ev_date_end";
+				$sql = "SELECT ev_id,haversine(?,?,pl_geo_lat,pl_geo_lon) AS dist FROM table_event LEFT JOIN table_place ON ev_ref_place_id = pl_id WHERE ? BETWEEN ev_date_beg AND ev_date_end HAVING dist < 30 ";
 
 
 
 				$stmt = $conn->prepare($sql);
 				
-				$stmt->bind_param("s",$date_full);
+				$stmt->bind_param("dds",$_POST["lat"],$_POST["lon"],$date_full);
 				echo "<tr>";
 				foreach(date_iterate_month($date_now) as $dite){
 					if($wd_count >= 7){

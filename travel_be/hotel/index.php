@@ -130,7 +130,7 @@ $result_viewpoint = $viewpoint_statement->get_result();
 			</tbody>
 			<tfoot class="w3-white">
 			<tr>
-				<td colspan="3" class="">
+				<td colspan="6" class="">
 					<div class="w3-right">
 					<button name="button_add" type="submit" class="w3-xlarge w3-btn w3-circle w3-green">+</button>
 					<button class="w3-btn w3-green w3-xlarge w3-round" name="button_ok"> OK </button>

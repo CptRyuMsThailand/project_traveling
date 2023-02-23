@@ -13,9 +13,9 @@ if(!isset($FROM_INDEX)){
 		</li>
 		<li class="w3-white w3-padding">
 			<div class="w3-row-padding w3-center" style="width: 100%;">
-				<div class="w3-cols s12">
+				<div class="w3-cols s12" id="calendar_container">
 					<?php
-					include "./calendar/calendar.php";
+					//include "./calendar/calendar.php";
 					?>
 				</div>
 			</div>
@@ -32,3 +32,63 @@ if(!isset($FROM_INDEX)){
 	</ul>
 </div>
 
+<script>
+
+
+	window.onload = async function(){
+		let geocoord = await getCoord();
+		const qString = window.location.search;
+		const urlParams = new URLSearchParams(qString);
+		let date = `${new Date().getFullYear()}-${(new Date().getMonth() + 1).toString().padStart(2,"0")}`;
+		
+		if(urlParams.has("date")){
+			date = decodeURIComponent(urlParams.get("date"));
+		}
+		calendar_container.innerHTML = await get_calendar(date,geocoord.latitude,geocoord.longitude);
+	}
+
+
+	async function get_calendar(ymd_string,geolat,geolon){
+	try{
+		let data = await new Promise(
+			(resolve,reject)=>{
+				xhttp.onload = function(){
+					try{
+						resolve(this.responseText);	
+					}catch(e){
+						reject(xhttp.responseText);
+					}
+					
+				}
+				xhttp.onerror = function(){
+					reject(xhttp.responseText);
+				}
+				xhttp.open("POST","./calendar/calendar.php?date="+encodeURIComponent(ymd_string),true);
+				xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				xhttp.send("lat="+encodeURIComponent(geolat)+"&lon="+encodeURIComponent(geolon));
+			}
+
+		);
+		return data;
+		
+	}catch(e){
+		throw e;
+	}
+	
+}
+async function getCoord(){
+	let prom1 = new Promise(
+			(resolve,reject)=>{
+				navigator.geolocation.getCurrentPosition(resolve,reject,gps_options);
+			}
+		);
+	try{
+		let res = await prom1;
+		return res.coords;
+	}catch(e){
+		return false;
+	}
+}
+
+
+</script>

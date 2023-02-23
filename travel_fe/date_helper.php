@@ -20,7 +20,28 @@ $SDATE_ENUM_THAI = [
 	"อา","จ","อ",
 	"พ","พฤ","ศ","ส"
 ];
+function dateThai($strDate){
+	$strYear = date("Y",strtotime($strDate)) + 543;
+	$strMonth = date("n",strtotime($strDate)) - 1;
+	$strDay = date("j",strtotime($strDate));
+	$MONTH_ENUM_THAI = [
+	"มกราคม",
+	"กุมภาพันธ์",
+	"มีนาคม",
+	"เมษายน",
+	"พฤษภาคม",
+	"มิถุนายน",
+	"กรกฏาคม",
+	"สิงหาคม",
+	"กันยายน",
+	"ตุลาคม",
+	"พฤศจิกายน",
+	"ธันวาคม"
+];
+	$strMonthTxt = $MONTH_ENUM_THAI[$strMonth];
+	return "$strDay $strMonthTxt $strYear";
 
+}
 function month_length($month,$year){ // Month - 1, year in bc format
 	switch($month){
 		case 0 : return 31;break;
