@@ -27,7 +27,7 @@ if(isset($_POST["login"])){
 	<title > Login required </title>
 </head>
 <link rel="stylesheet" href="./css/w3.css">
-<link rel="shortcut icon" href="./../travel_fe/favicon.jpg">
+<link rel="shortcut icon" href="./../travel_fe/favicon.png">
 <body>
 
 

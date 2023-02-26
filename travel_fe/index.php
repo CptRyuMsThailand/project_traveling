@@ -13,6 +13,7 @@ function namedAuthorized($province,$amphoe,$tumbol){
 	return $arr[0] . $tumbol . $arr[1] . $amphoe . " จังหวัด " . $province;
 
 }
+$debug_distance = 30;
 ?>
 
 <!doctype html>

@@ -9,7 +9,14 @@ require("tabHelper.php");
     <a href="JavaScript:void(0)" onclick="w3_close('dom_tab_main');" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
       <i class="fa fa-remove"></i>
     </a>
-    <img src="./favicon.jpg" style="width:100px; height:100px; object-fit:cover;" class="w3-round"><br><br>
+    <div class="w3-bar-block w3-row-padding">
+      <div class="w3-half">
+        <img src="./favicon.png" style="width:100px; height:100px; object-fit:cover;" class="w3-round">
+      </div>
+      <div class="w3-half">
+      <h4>Project</h4><h4>Traveling</h4></div>
+    </div>
+    <br><br>
     <div class="w3-bar-block">
     <a href="./index.php?pageName=home" class="w3-bar-item w3-button w3-padding <?php if($tabSelected == "home")echo "w3-green";?>" >
       <span><i class="fa fa-home fa-th-large"></i> หน้าหลัก </span>
@@ -40,7 +47,7 @@ require("tabHelper.php");
   <a href="./index.php?pageName=calendar"><span class="w3-bar-item w3-button w3-hide-large w3-xxlarge w3-hover-text-grey <?php if($tabSelected == "calendar")echo "w3-green";?>"><i class="fa fa-calendar"></i> </span></a>
   
   
-  <img src="./favicon.jpg" style="width:50px; height:50px; object-fit:cover;" class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity">
+  <img src="./favicon.png" style="width:50px; height:50px; object-fit:cover;" class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity">
   </div>
   <div class="w3-container w3-center">
    <h1>เว็บแอปพลิเคชันแนะนำกิจกรรมท่องเที่ยวเชิงวัฒนธรรมจังหวัดสมุทรปราการ</h1>

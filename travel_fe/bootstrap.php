@@ -2,4 +2,4 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="./css/font.css" />
-<link rel="shortcut icon" href="./favicon.jpg" />
+<link rel="shortcut icon" href="./favicon.png" />
