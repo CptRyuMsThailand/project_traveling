@@ -43,7 +43,7 @@ require("tabHelper.php");
   <img src="./favicon.jpg" style="width:50px; height:50px; object-fit:cover;" class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity">
   </div>
   <div class="w3-container w3-center">
-   <h1>เว็บค้นหากิจกรรมท่องเที่ยวเชิงวัฒนธรรม</h1>
+   <h1>เว็บแอปพลิเคชันแนะนำกิจกรรมท่องเที่ยวเชิงวัฒนธรรมจังหวัดสมุทรปราการ</h1>
  </div>
 </header>
 <div class="w3-container w3-main">
