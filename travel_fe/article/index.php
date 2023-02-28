@@ -24,8 +24,7 @@ $maps_url = $google_map_ext_url . $result["pl_geo_lat"] . "," . $result["pl_geo_
 				<button onclick="article_set_tab(0);" class="w3-bar-item w3-button cpt_tab"> รายละเอียด </button>
 				<button onclick="article_set_tab(1);" class="w3-bar-item w3-button cpt_tab"> รูปภาพ </button>
 				<button onclick="article_set_tab(2);" class="w3-bar-item w3-button cpt_tab"> ข้อมูลการจัดงาน </button>
-				<button onclick="article_set_tab(3);" class="w3-bar-item w3-button cpt_tab"> สินค้าโอท็อป </button>
-				<button onclick="article_set_tab(4);" class="w3-bar-item w3-button cpt_tab"> โรงแรม/ที่พัก </button>
+				<button onclick="article_set_tab(3);" class="w3-bar-item w3-button cpt_tab"> โรงแรม/ที่พัก </button>
 				<a href="<?=$maps_url?>" target="new" class="w3-bar-item w3-button w3-yellow"> Maps </a>
 				
 			</div>
@@ -45,15 +44,6 @@ $maps_url = $google_map_ext_url . $result["pl_geo_lat"] . "," . $result["pl_geo_
 				<li class="w3-white"><div  class="w3-container">
 					<?php
 					include("./article/articleCredit.php");
-					?>
-
-				</div></li>
-			</ul>
-			<ul class="w3-ul w3-bottombar" id="tab_view_otop">
-				<li class="w3-white"> <h2> สินค้าโอท็อป</h2></li>
-				<li class="w3-white"><div  class="w3-container">
-					<?php
-					include("./article/articleOtop.php");
 					?>
 
 				</div></li>
@@ -87,7 +77,6 @@ let tabContentDom = [
 	tab_main_article,
 	tab_view_article,
 	tab_view_location,
-	tab_view_otop,
 	tab_view_hotel
 	];
 let article_id = 0;
@@ -99,7 +88,7 @@ function article_set_tab(ind){
 	history.replaceState(null,null,"index.php?pageName=article&articleid="+article_id+"&article_tab="+ind);
 }
 function article_reset_tab(){
-	for(let i=0;i<5;i++)tabContentDom[i].style.display = "none";
+	for(let i=0;i<4;i++)tabContentDom[i].style.display = "none";
 	
 	let className = document.getElementsByClassName("cpt_tab");
 	for(let i = 0;i<className.length;i++){

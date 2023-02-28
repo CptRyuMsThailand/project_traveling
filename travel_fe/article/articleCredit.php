@@ -1,7 +1,9 @@
 <?php
 if(!isset($FROM_INDEX) )header("Location:./../index.php");
 require_once("./connection/connect.php");
-$MONTH_ENUM_THAI = [
+
+function returned_text_format($d,$m,$calendar_type){
+	$MONTH_ENUM_THAI = [
 	"มกราคม",
 	"กุมภาพันธ์",
 	"มีนาคม",
@@ -15,7 +17,6 @@ $MONTH_ENUM_THAI = [
 	"พฤศจิกายน",
 	"ธันวาคม"
 ];
-function returned_text_format($d,$m,$calendar_type){
 	if($calendar_type == "sun"){
 		return "วันที่ ".$d." เดือน ".$MONTH_ENUM_THAI[$m - 1];
 	}
