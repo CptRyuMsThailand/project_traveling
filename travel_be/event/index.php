@@ -19,7 +19,6 @@ if(!isset($page_id)){
 				<th> Start Date </th>
 				<th> End   Date </th>
 				<th class="w3-center"> Gallery </th>
-				<th class="w3-center"> Otop </th>
 				<th class="w3-center"> Edit </th>
 				<th class="w3-center"> Delete </th>
 			</tr>
@@ -64,9 +63,6 @@ async function homeload(){
 				</td>
 				<td>
 					<a href="./index.php?page=viewpoint&event_id=${i.ev_id}" class="w3-button w3-xlarge fa fa-image"></a>
-				</td>
-				<td>
-					<a href="./index.php?page=otop&event_id=${i.ev_id}" class="w3-button w3-xlarge"><img src="./../travel_fe/images/otop.png" alt="otop" width="64"></a>
 				</td>
 				<td>
 					<a href="./index.php?page=EDIT_EVENT&edit_id=${i.ev_id}" class="w3-button w3-xlarge fa">&#xf040;</a>
