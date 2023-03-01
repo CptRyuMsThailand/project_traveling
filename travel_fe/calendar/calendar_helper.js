@@ -5,7 +5,7 @@ let gps_options = {
 };
 let google_map_ext_url = "https://www.google.com/maps/place/"
 let xhttp = new XMLHttpRequest();
-async function get_eventInDate(ymd_string){
+async function get_eventInDate(ymd_string,gps_coord){
 	try{
 		let data = await new Promise(
 			(resolve,reject)=>{
@@ -23,7 +23,7 @@ async function get_eventInDate(ymd_string){
 				}
 				xhttp.open("POST","./calendar/calendar_helper.php",true);
 				xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-				xhttp.send("date="+encodeURIComponent( ymd_string));
+				xhttp.send("date="+encodeURIComponent( ymd_string)+"&lat="+encodeURIComponent(gps_coord.latitude.toString())+"&lon="+encodeURIComponent(gps_coord.longitude.toString()));
 			}
 
 		);
@@ -69,9 +69,11 @@ async function calendar_get_data(instr){
 	}
 	calendar_is_executing = true;
 	let date_str_obj = instr.split("-");
-	let dataRet = await get_eventInDate(instr);
-	list_of_output.innerHTML = "";
+
 	let gps_coord = await getCoord();
+	console.log(gps_coord);
+	let dataRet = await get_eventInDate(instr,gps_coord);
+	list_of_output.innerHTML = "";
 	
 	calendar_is_executing = false;
 	let arr_to_ret = [];

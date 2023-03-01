@@ -82,7 +82,7 @@ $result_moon_year = $res_query->fetch_array(MYSQLI_ASSOC);
 				</tr>
 				<?php
 				$wd_count = 0;
-				$sql = "SELECT ev_id,haversine(?,?,pl_geo_lat,pl_geo_lon) AS dist FROM table_event LEFT JOIN table_place ON ev_ref_place_id = pl_id WHERE ? BETWEEN ev_date_beg AND ev_date_end HAVING dist < 30 ";
+				$sql = "SELECT ev_id,haversine(?,?,pl_geo_lat,pl_geo_lon) AS dist FROM table_event LEFT JOIN table_place ON ev_ref_place_id = pl_id WHERE DATE(?) BETWEEN DATE(ev_date_beg) AND DATE(ev_date_end) HAVING dist < 30 ";
 
 
 
